@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 08-Nov-2025 às 21:21
+-- Tempo de geração: 10-Nov-2025 às 13:21
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -37,6 +37,13 @@ CREATE TABLE `administrador` (
   `data_desligamento` datetime DEFAULT NULL,
   `ativo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `administrador`
+--
+
+INSERT INTO `administrador` (`id`, `nome`, `email`, `senha`, `nivel_acesso`, `data_cadastro`, `data_desligamento`, `ativo`) VALUES
+(1, 'Admin Mestre', 'admin@ajudapet.com', '$2y$10$OCrXfGH7eMU0dP6qLU3PbOZcxEYyEOR7Exg4ZJHcg3HYOj3tgJthq', '0', '2025-11-10 12:00:47', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -103,6 +110,13 @@ CREATE TABLE `solicitante` (
   `data_cadastro` timestamp NOT NULL DEFAULT current_timestamp(),
   `ativo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `solicitante`
+--
+
+INSERT INTO `solicitante` (`id`, `nome`, `cpf`, `email`, `senha`, `telefone`, `endereco_completo`, `cidade`, `estado`, `tipo_moradia`, `ja_teve_pets`, `data_cadastro`, `ativo`) VALUES
+(1, 'teste da silva', '123456789010', 'teste@email.com', '$2y$10$K6jaR0gKmX2y3.yBghfUIedmKAzHauaEBiiIYOrmK4n1XCekPex6W', '99999999999', 'rua dos bobos nº0', 'ituvecuty', 'sp', 'casa', 1, '2025-11-10 12:19:15', 1);
 
 -- --------------------------------------------------------
 
@@ -171,7 +185,7 @@ ALTER TABLE `vacinas`
 -- AUTO_INCREMENT de tabela `administrador`
 --
 ALTER TABLE `administrador`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `animal`
@@ -189,7 +203,7 @@ ALTER TABLE `solicitacaoadoção`
 -- AUTO_INCREMENT de tabela `solicitante`
 --
 ALTER TABLE `solicitante`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `vacinas`
