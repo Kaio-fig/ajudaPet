@@ -9,6 +9,6 @@ session_unset();
 session_destroy();
 
 // 4. Redireciona para a página de login com uma msg de sucesso
-header("Location: ../login.php?logout=sucesso");
+header("Location: ../index.php?logout=sucesso");
 exit();
 ?>
