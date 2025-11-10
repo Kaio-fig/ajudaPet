@@ -6,44 +6,6 @@
     <title>Cadastro - Ajudapet</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
     
-    <style>
-        .form-group {
-            margin-bottom: 1rem;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            font-weight: 500;
-        }
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-family: 'Montserrat', sans-serif;
-        }
-        .btn-submit {
-            /* Reutilizando a classe do CSS principal, mas pode ser .btn-detalhes */
-            display: block;
-            width: 100%;
-            background-color: var(--cor-principal);
-            color: white;
-            text-align: center;
-            padding: 0.75rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 500;
-            transition: background-color 0.3s ease;
-            border: none;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .btn-submit:hover {
-            background-color: var(--cor-principal-hover);
-        }
-    </style>
 </head>
 <body>
 
