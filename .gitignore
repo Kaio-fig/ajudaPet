@@ -3,3 +3,6 @@ config/config_banco.php
 
 #Arquivos de SQL
 *.sql
+
+#pasta de upload de fotos
+uploads/
