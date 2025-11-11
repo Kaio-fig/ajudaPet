@@ -83,7 +83,7 @@ $id_admin = $_SESSION['admin_id'];
                 <label for="porte">Porte:</label>
                 <select id="porte" name="porte" required>
                     <option value="Pequeno">Pequeno</option>
-                    <option value="Média">Média</option>
+                    <option value="Medio">Médio</option>
                     <option value="Grande">Grande</option>
                 </select>
             </div>

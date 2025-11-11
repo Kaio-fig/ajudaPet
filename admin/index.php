@@ -34,7 +34,7 @@ $nome_admin = $_SESSION['admin_nome'];
                 <ul>
                     <li><a href="index.php">Início</a></li>
                     <li><a href="./animais_admin/cadastrar_animal.php">Cadastrar Animal</a></li>
-                    <li><a href="consultar_animal.php">Consultar Animal</li></a>
+                    <li><a href="./animais_admin/consultar_animal.php">Consultar Animal<a></li>
                     <li><a href="avaliar_solicitacoes.php">Ver Solicitações</a></li>
                 </ul>
             </nav>
@@ -56,6 +56,7 @@ $nome_admin = $_SESSION['admin_nome'];
             <p>Próximos passos:</p>
             <ul>
                 <li><a href="./animais_admin/cadastrar_animal.php">Cadastrar um novo animal</a></li>
+                <li><a href="./animais_admin/consultar_animal.php">Consultar animais cadastrados</a></li>
                 <li><a href="avaliar_solicitacoes.php">Gerenciar solicitações de adoção</a></li>
             </ul>
         </div>
