@@ -1,8 +1,8 @@
 #Aqruivo de configuração do BD
-config/config_banco.php
+#config/config_banco.php
 
 #Arquivos de SQL
-*.sql
+#*.sql
 
 #pasta de upload de fotos
-uploads/
+#uploads/
