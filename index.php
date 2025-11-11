@@ -38,17 +38,38 @@ try {
                 </ul>
             </nav>
 
-            <?php
-            if (isset($_SESSION['admin_id']) || isset($_SESSION['solicitante_id'])):
-            ?>
-                <a href="backend/logout.php" class="btn-login">Sair</a>
+            <div class="nav-buttons">
+                <?php
+                // VERIFICA SE É UM ADMIN LOGADO
+                if (isset($_SESSION['admin_id'])):
+                ?>
+                    <a href="admin/index.php" class="btn-profile">Painel Admin</a>
+                    <a href="backend/logout.php" class="btn-login">Sair</a>
 
-            <?php else: ?>
-                <a href="login.php" class="btn-login">Login/Cadastro</a>
+                <?php
+                // VERIFICA SE É UM SOLICITANTE LOGADO
+                elseif (isset($_SESSION['solicitante_id'])):
+                    // Pega o nome do solicitante (o "Marcos Oli" do exemplo)
+                    $nome_solicitante = $_SESSION['solicitante_nome'];
+                ?>
+                    <div class="profile-dropdown">
+                        <button class="btn-profile">
+                            <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-icon">
+                            <?php echo htmlspecialchars($nome_solicitante); ?> 
+                            &#9662; </button>
+                        <div class="dropdown-content">
+                            <a href="perfil.php">Meus Dados</a>
+                            <a href="backend/logout.php">Sair</a>
+                        </div>
+                    </div>
 
-            <?php endif; ?>
-
-        </div>
+                <?php
+                else:
+                ?>
+                    <a href="login.php" class="btn-login">Login/Cadastro</a>
+                
+                <?php endif; ?>
+            </div> </div>
     </header>
     <main>
         <section class="hero">
