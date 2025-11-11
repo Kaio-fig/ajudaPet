@@ -74,7 +74,7 @@ try {
                             <td><?php echo htmlspecialchars($animal['nome']); ?></td>
                             <td><?php echo htmlspecialchars($animal['status']); ?></td>
                             <td class="acoes">
-                                <a href="editar_animal.php?id=<?php echo $animal['id']; ?>" class="btn-editar">
+                                <a href="./editar_animais.php?id=<?php echo $animal['id']; ?>" class="btn-editar">
                                     Editar
                                 </a>
                                 <a href="../../backend/animais_backend/excluir_animal.php?id=<?php echo $animal['id']; ?>" class="btn-excluir">

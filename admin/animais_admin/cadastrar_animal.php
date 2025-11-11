@@ -3,7 +3,7 @@
 session_start();
 
 // 2. O Bouncer (Segurança)
-// IDÊNTICO ao seu index_admin.php
+
 if ( !isset($_SESSION['admin_id']) || $_SESSION['nivel_acesso'] != 0 ) {
     header("Location: ../login.php?erro=acesso_negado");
     exit();
