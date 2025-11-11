@@ -5,15 +5,33 @@ session_start();
 // 2. Incluir o arquivo de conexão
 require_once 'config/conexao.php';
 
-// 3. Preparar e Executar a Query SQL
+// 3. Preparar e Executar a Query SQL (para a galeria)
 try {
-    $sql = "SELECT id, nome, sexo, porte, imagem_url, personalidade, data_nascimento FROM Animal WHERE status = 'Disponível' ORDER BY data_cadastro DESC";
+    $sql = "SELECT id, nome, sexo, porte, imagem_url, data_nascimento, personalidade FROM Animal WHERE status = 'Disponível' ORDER BY data_cadastro DESC";
     $stmt = $pdo->query($sql);
     $animais = $stmt->fetchAll();
 } catch (PDOException $e) {
     echo "Erro ao buscar animais: " . $e->getMessage();
     $animais = [];
 }
+
+// 4.LÓGICA DO CARROSSEL
+$imagens_carrossel = [];
+
+// Adiciona as imagens dos animais (se tiverem)
+if ($animais) {
+    foreach ($animais as $animal) {
+        if (!empty($animal['imagem_url'])) {
+            $imagens_carrossel[] = 'uploads/' . $animal['imagem_url'];
+        }
+    }
+}
+
+// Adiciona a imagem de fallback (hero-bg.jpg) à rotação
+$imagens_carrossel[] = 'assets/images/hero-bg.jpg';
+
+// Embaralha a ordem
+shuffle($imagens_carrossel);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -29,7 +47,7 @@ try {
 
     <header class="navbar">
         <div class="container">
-            <a href="index.php" class="logo">Pet & Tudo Mais</a>
+            <a href="index.php" class="logo">Ajuda pet</a>
             <nav>
                 <ul>
                     <li><a href="index.php">Início</a></li>
@@ -55,7 +73,7 @@ try {
                     <div class="profile-dropdown">
                         <button class="btn-profile">
                             <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-icon">
-                            <?php echo htmlspecialchars($nome_solicitante); ?> 
+                            <?php echo htmlspecialchars($nome_solicitante); ?>
                             &#9662; </button>
                         <div class="dropdown-content">
                             <a href="perfil.php">Meus Dados</a>
@@ -67,9 +85,10 @@ try {
                 else:
                 ?>
                     <a href="login.php" class="btn-login">Login/Cadastro</a>
-                
+
                 <?php endif; ?>
-            </div> </div>
+            </div>
+        </div>
     </header>
     <main>
         <section class="hero">
@@ -128,6 +147,7 @@ try {
     </footer>
     <script src="assets/js/funcoes.js" defer></script>
     <script src="assets/js/index.js" defer></script>
+    <script>const listaImagensCarrossel = <?php echo json_encode($imagens_carrossel); ?>;</script>
 
 </body>
 

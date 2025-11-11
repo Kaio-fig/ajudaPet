@@ -97,8 +97,10 @@ img {
 .hero {
   height: 60vh; /* Altura da "janela" */
   background-color: var(--cor-dark); /* Cor de fallback */
-
-  background-size: cover;
+  
+  transition: background-image 1s ease-in-out;
+  background-size: contain;
+  background-repeat: no-repeat;
   background-position: center;
   background-blend-mode: multiply; /* Efeito de escurecer a imagem */
   background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
