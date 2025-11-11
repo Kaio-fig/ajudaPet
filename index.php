@@ -7,7 +7,7 @@ require_once 'config/conexao.php';
 
 // 3. Preparar e Executar a Query SQL
 try {
-    $sql = "SELECT id, nome, sexo, porte, imagem_url FROM Animal WHERE status = 'Disponível' ORDER BY data_cadastro DESC";
+    $sql = "SELECT id, nome, sexo, porte, imagem_url, personalidade, data_nascimento FROM Animal WHERE status = 'Disponível' ORDER BY data_cadastro DESC";
     $stmt = $pdo->query($sql);
     $animais = $stmt->fetchAll();
 } catch (PDOException $e) {
@@ -73,6 +73,11 @@ try {
                                 <ul>
                                     <li><strong>Sexo:</strong> <?php echo htmlspecialchars($animal['sexo']); ?></li>
                                     <li><strong>Porte:</strong> <?php echo htmlspecialchars($animal['porte']); ?></li>
+                                    <li class="info-idade-animal" data-nascimento="<?php echo htmlspecialchars($animal['data_nascimento']); ?>">
+                                        <strong>Idade:</strong> 
+                                        <span class="idade-calculada">...</span>
+                                    </li>
+                                    <li><strong>Personalidade:</strong> <?php echo htmlspecialchars($animal['personalidade'])?></li>
                                 </ul>
                                 <a href="animal_detalhes.php?id=<?php echo $animal['id']; ?>" class="btn-detalhes">
                                     Ver Detalhes
@@ -98,6 +103,6 @@ try {
             <p>&copy; 2025 Ajudapet. Todos os direitos reservados.</p>
         </div>
     </footer>
-
+    <script src="assets/js/calculo_idade_animal.js"></script>
 </body>
 </html>
