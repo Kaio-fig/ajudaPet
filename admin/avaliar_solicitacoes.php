@@ -94,8 +94,8 @@ try {
             <a href="./animais_admin/consultar_animal.php" class="tab-link">
                 <i class="fas fa-paw"></i> Gerenciar Animais
             </a>
-            <a href="#" class="tab-link">
-                <i class="fas fa-file-alt"></i> Relatório
+            <a href="relatorio.php" class="tab-link">
+                <i class="fas fa-file-alt"></i> Gerenciar solicitantes
             </a>
         </nav>
 

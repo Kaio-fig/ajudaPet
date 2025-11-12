@@ -83,3 +83,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// --- Lógica das Abas de Doação (no index.php) ---
+document.addEventListener('DOMContentLoaded', function() {
+    
+    const tabLinks = document.querySelectorAll('.doacao-tab-link');
+    const tabContents = document.querySelectorAll('.doacao-content');
+
+    // Verifica se os elementos das abas existem nesta página
+    if (tabLinks.length > 0) {
+        
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const tabId = link.dataset.tab; // ex: "tab-monetaria"
+
+                // 1. Remove 'active' de todos
+                tabLinks.forEach(l => l.classList.remove('active'));
+                tabContents.forEach(c => c.classList.remove('active'));
+
+                // 2. Adiciona 'active' ao link clicado e ao conteúdo
+                link.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    }
+});

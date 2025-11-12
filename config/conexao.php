@@ -24,7 +24,7 @@ $options = [
 try {
      $pdo = new PDO($dsn, $user, $pass, $options);
 } catch (\PDOException $e) {
-    // apagar ao fim do prohjeto
+    // apagar ao fim do projeto
      throw new \PDOException($e->getMessage(), (int)$e->getCode());
 }
 

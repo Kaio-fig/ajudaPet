@@ -66,6 +66,7 @@ if (isset($_SESSION['solicitante_id'])) {
                     <li><a href="index.php">Início</a></li>
                     <li><a href="#galeria">Animais</a></li>
                     <li><a href="#como-funciona">Instruções</a></li>
+                    <li><a href="#doacoes">Doações</a></li>
                 </ul>
             </nav>
 
@@ -169,16 +170,92 @@ if (isset($_SESSION['solicitante_id'])) {
                 <div class="info-card">
                     <span class="card-number">2</span>
                     <h3>Solicite a Visita</h3>
-                    <p>Na página do animal, clique em "Quero Adotar". No formulário que aparecer, você poderá **sugerir a melhor data e hora** para você vir conhecê-lo.</p>
+                    <p>Na página do animal, clique em "Quero Adotar". No formulário que aparecer, <b>você poderá sugerir a melhor data e hora</b> para você vir conhecê-lo.</p>
                 </div>
 
                 <div class="info-card">
                     <span class="card-number">3</span>
                     <h3>Aguarde a Confirmação</h3>
-                    <p>Nossa equipe irá analisar seu perfil. Fique de olho na sua página **"Meus Pedidos"** para ver o status e a data confirmada da sua visita!</p>
+                    <p>Nossa equipe irá analisar seu perfil. Fique de olho na sua página <b>"Meus Pedidos"</b> para ver o status e a data confirmada da sua visita!</p>
                 </div>
 
             </div>
+        </section>
+        <section id="doacoes" class="container" style="padding: 3rem 0;">
+
+            <div style="text-align: center; margin-bottom: 2rem;">
+                <h2>Ajude nossa Causa</h2>
+                <p>Sua contribuição é vital para continuarmos nosso resgate e cuidado.</p>
+            </div>
+
+            <nav class="doacao-tabs">
+                <button class="doacao-tab-link active" data-tab="tab-monetaria">
+                    <i class="fas fa-hand-holding-usd"></i> Doação Monetária
+                </button>
+                <button class="doacao-tab-link" data-tab="tab-fisica">
+                    <i class="fas fa-box-open"></i> Doação de Itens
+                </button>
+            </nav>
+
+            <div id="tab-monetaria" class="doacao-content active">
+                <h3>Faça uma contribuição financeira</h3>
+                <p>Seu dinheiro será usado para cobrir custos veterinários, vacinas, cirurgias e ração.</p>
+
+                <div class="pix-info">
+                    <strong>Doe via PIX</strong>
+                    <p>Use nossa chave (E-mail):</p>
+                    <input type="text" value="financeiro@ajudapet.com" readonly onclick="this.select();">
+                    <small>Ou aponte sua câmera para o QR Code ao lado.</small>
+                </div>
+                <div class="paypal-info">
+                    <strong>Doe com PayPal ou Cartão</strong>
+                    <p>Clique no botão abaixo para ser redirecionado a um ambiente de pagamento seguro.</p>
+                    <a href="https://paypal.me/suaong" target="_blank" class="btn-submit" style="width: auto;">
+                        Doar com PayPal
+                    </a>
+                </div>
+            </div>
+
+            <div id="tab-fisica" class="doacao-content">
+                <h3>Oferta de Doação Física</h3>
+                <p>Ração, remédios, coleiras e vacinas são sempre bem-vindos! Por favor, descreva sua doação e entraremos em contato para combinar a retirada.</p>
+
+                <form action="backend/processa_doacao_fisica.php" method="POST">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nome_doador">Seu Nome:</label>
+                            <input type="text" id="nome_doador" name="nome_doador" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Seu E-mail:</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="telefone">Telefone (Opcional):</label>
+                            <input type="tel" id="telefone" name="telefone">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo_item">Tipo de Item:</label>
+                            <select id="tipo_item" name="tipo_item" required>
+                                <option value="" disabled selected>-- Selecione --</option>
+                                <option value="Ração">Ração</option>
+                                <option value="Remédio">Remédio</option>
+                                <option value="Vacina">Vacina</option>
+                                <option value="Acessório">Acessório (Cama, Coleira, etc.)</option>
+                                <option value="Outro">Outro</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição dos Itens:</label>
+                        <textarea id="descricao" name="descricao" rows="4" placeholder="Ex: 3 pacotes de ração para filhotes..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Enviar Oferta de Doação</button>
+                </form>
+            </div>
+
         </section>
     </main>
 

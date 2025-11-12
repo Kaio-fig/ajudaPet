@@ -86,8 +86,8 @@ try {
             <a href="./animais_admin/consultar_animal.php" class="tab-link">
                 <i class="fas fa-paw"></i> Gerenciar Animais
             </a>
-            <a href="#" class="tab-link">
-                <i class="fas fa-file-alt"></i> Relatório
+            <a href="relatorio.php" class="tab-link">
+                <i class="fas fa-file-alt"></i> Gerenciar Solicitantes
             </a>
         </nav>
 
@@ -146,11 +146,8 @@ try {
                 <a href="./animais_admin/cadastrar_animal.php" class="action-button">
                     <i class="fas fa-plus-circle"></i> Adicionar Animal
                 </a>
-                <a href="avaliar_solicitacoes.php" class="action-button">
-                    <i class="fas fa-tasks"></i> Ver Solicitações
-                </a>
-                <a href="#" class="action-button">
-                    <i class="fas fa-file-alt"></i> Ver Relatório
+                <a href="ver_doacoes.php" class="action-button">
+                    <i class="fas fa-file-alt"></i> Ver Doações
                 </a>
             </div>
 
