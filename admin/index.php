@@ -12,8 +12,6 @@ require_once '../config/conexao.php';
 
 // 3. BUSCAR DADOS PARA OS CARDS
 try {
-    // --- Contagem de Animais ---
-    // (Usamos SUM(CASE...) para fazer tudo em uma consulta só)
     $sql_animais = "SELECT
                         COUNT(*) AS total,
                         SUM(CASE WHEN status = 'Disponível' THEN 1 ELSE 0 END) AS disponiveis,
@@ -22,7 +20,6 @@ try {
     $stmt_animais = $pdo->query($sql_animais);
     $counts_animais = $stmt_animais->fetch(PDO::FETCH_ASSOC);
 
-    // --- Contagem de Solicitações ---
     $sql_solicitacoes = "SELECT
                             SUM(CASE WHEN status = 'Pendente' THEN 1 ELSE 0 END) AS pendentes,
                             SUM(CASE WHEN status = 'Aprovada' THEN 1 ELSE 0 END) AS aprovadas,
@@ -31,7 +28,6 @@ try {
     $stmt_solicitacoes = $pdo->query($sql_solicitacoes);
     $counts_solicitacoes = $stmt_solicitacoes->fetch(PDO::FETCH_ASSOC);
 
-    // (Garante que os números não sejam nulos se o banco estiver vazio)
     $total_animais = $counts_animais['total'] ?? 0;
     $total_disponiveis = $counts_animais['disponiveis'] ?? 0;
     $total_adotados = $counts_animais['adotados'] ?? 0;
@@ -39,7 +35,6 @@ try {
     $total_pendentes = $counts_solicitacoes['pendentes'] ?? 0;
     $total_aprovadas = $counts_solicitacoes['aprovadas'] ?? 0;
     // O mockup_4 tem "Finalizados", mas o DB tem "Aprovada" e "Rejeitada" (mockup_5)
-    // Vamos mostrar os 3 status do DB, o que é mais útil.
     $total_rejeitadas = $counts_solicitacoes['rejeitadas'] ?? 0;
 
 } catch (PDOException $e) {
