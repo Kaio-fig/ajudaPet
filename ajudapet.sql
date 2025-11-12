@@ -145,6 +145,15 @@ ALTER TABLE `administrador`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
+-- Adiciona as colunas que faltam da tela 'Meus Dados'
+ALTER TABLE Solicitante
+    ADD COLUMN cep VARCHAR(10) NULL AFTER estado,
+    ADD COLUMN possui_quintal ENUM('Sim', 'Não') NULL AFTER tipo_moradia,
+    ADD COLUMN descricao_pets_anteriores TEXT NULL AFTER ja_teve_pets,
+    ADD COLUMN experiencia_animais VARCHAR(255) NULL AFTER descricao_pets_anteriores,
+    ADD COLUMN disponibilidade_tempo VARCHAR(255) NULL AFTER experiencia_animais,
+    ADD COLUMN motivacao_adotar TEXT NULL AFTER disponibilidade_tempo;
+
 --
 -- Índices para tabela `animal`
 --
