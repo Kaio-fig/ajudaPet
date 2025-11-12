@@ -2,7 +2,9 @@
 // 1. INICIAR SESSÃO E CONEXÃO
 session_start();
 require_once 'config/conexao.php';
-// O 'helpers/funcoes.php' NÃO é mais necessário aqui.
+
+// Inclui os scripts de funções (JS)
+// (Vamos carregar os scripts no final do <body>)
 
 // 2. SEGURANÇA: PEGAR O ID DO ANIMAL
 $animal_id = $_GET['id'] ?? 0;
@@ -12,7 +14,7 @@ if (!is_numeric($animal_id) || $animal_id <= 0) {
     exit();
 }
 
-// 3. BUSCAR DADOS DO ANIMAL
+// 3. BUSCAR DADOS DO ANIMAL E VACINAS
 try {
     // Query 1: Pega o animal principal
     $sql = "SELECT * FROM Animal WHERE id = ?";
@@ -31,111 +33,100 @@ try {
     $stmt_vacinas = $pdo->prepare($sql_vacinas);
     $stmt_vacinas->execute([$animal_id]);
     $vacinas = $stmt_vacinas->fetchAll();
+
 } catch (PDOException $e) {
     die("Erro ao buscar dados do animal: " . $e->getMessage());
 }
 
-// 4. LÓGICA DO BOTÃO "QUERO ADOTAR"
-$link_adotar = '#'; // Link padrão
+// 4. [LÓGICA ATUALIZADA]
+// Verifica se o USUÁRIO LOGADO tem uma solicitação PENDENTE para este animal
+$solicitacao_pendente = false;
+if (isset($_SESSION['solicitante_id'])) {
+    $id_solicitante_logado = $_SESSION['solicitante_id'];
+
+    $sql_check = "SELECT id FROM SolicitacaoAdoção 
+                  WHERE id_animal = ? AND id_solicitante = ? AND (status = 'Pendente' OR status = 'Aprovada')"; // Verifica pendente ou aprovada
+    $stmt_check = $pdo->prepare($sql_check);
+    $stmt_check->execute([$animal_id, $id_solicitante_logado]);
+    
+    if ($stmt_check->fetch()) {
+        $solicitacao_pendente = true;
+    }
+}
+
+// 5. LÓGICA DO BOTÃO "QUERO ADOTAR"
+$link_adotar = '#'; 
 $texto_adotar = 'Quero Adotar';
 $disabled = '';
-$classe_botao = 'btn-adotar'; // Classe padrão
+$classe_botao = 'btn-adotar';
+$mostrar_modal_btn = false; // Flag para mostrar o botão do modal
 
-// Se o animal não estiver disponível
-if ($animal['status'] != 'Disponível') {
+// Caso 1: Usuário logado JÁ TEM uma solicitação pendente
+if ($solicitacao_pendente) {
+    $texto_adotar = 'Solicitação Pendente';
+    $disabled = 'disabled';
+    $classe_botao = 'btn-adotar-disabled';
+}
+// Caso 2: Animal não está disponível (Adotado ou Em Processo por OUTRO)
+elseif ($animal['status'] != 'Disponível') {
     $texto_adotar = ($animal['status'] == 'Adotado' ? 'Adotado' : 'Em processo');
     $disabled = 'disabled';
     $classe_botao = 'btn-adotar-disabled';
-}
-// Se estiver disponível, mas usuário (solicitante) não está logado
+} 
+// Caso 3: Usuário (solicitante) não está logado
 elseif (!isset($_SESSION['solicitante_id'])) {
-    // Aponta para o login, e guarda o "redirect" para voltar aqui
     $link_adotar = 'login.php?necessario=1&redirect=animal_detalhes.php?id=' . $animal['id'];
-}
-// Se estiver disponível E logado como solicitante
-elseif (isset($_SESSION['solicitante_id'])) {
-    // Aponta para o script que processa a solicitação
-    $link_adotar = 'backend/processa_solicitacao.php?id_animal=' . $animal['id'];
-    // (Falta fazer esse script processa_solicitacao.php)
-}
-// Se for um admin logado, ele também não pode adotar
+} 
+// Caso 4: Logado como Admin
 elseif (isset($_SESSION['admin_id'])) {
-    $texto_adotar = 'Logado como Admin';
-    $disabled = 'disabled';
-    $classe_botao = 'btn-adotar-disabled';
+     $texto_adotar = 'Logado como Admin';
+     $disabled = 'disabled';
+     $classe_botao = 'btn-adotar-disabled';
 }
+// Caso 5: Animal disponível, usuário logado, sem solicitação pendente
+elseif (isset($_SESSION['solicitante_id'])) {
+    $mostrar_modal_btn = true; // SINAL VERDE! Mostra o botão que abre o modal
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes de <?php echo htmlspecialchars($animal['nome']); ?> - Ajudapet</title>
     <link rel="stylesheet" href="assets/css/estilo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
-    <script src="assets/js/utils.js" defer></script>
-    <script src="assets/js/main.js" defer></script>
-</head>
-
+    
+    </head>
 <body>
 
+    <?php
+    // Recomendo fortemente usar "partials" para o header e footer
+    // Ex: require 'partials/header.php';
+    // Por enquanto, cole o HTML do seu header aqui.
+    ?>
     <header class="navbar">
-        <div class="container">
-            <a href="index.php" class="logo">Ajuda pet</a>
-            <nav>
-                <ul>
-                    <li><a href="index.php">Início</a></li>
-                    <li><a href="#galeria">Animais</a></li>
-                    <li><a href="#como-funciona">Instruções</a></li>
-                </ul>
-            </nav>
-
-            <div class="nav-buttons">
-                <?php
-                // VERIFICA SE É UM ADMIN LOGADO
-                if (isset($_SESSION['admin_id'])):
-                ?>
-                    <a href="admin/index.php" class="btn-profile">Painel Admin</a>
-                    <a href="backend/logout.php" class="btn-login">Sair</a>
-
-                <?php
-                elseif (isset($_SESSION['solicitante_id'])):
-                    $nome_solicitante = $_SESSION['solicitante_nome'];
-                ?>
-                    <div class="profile-dropdown">
-                        <button class="btn-profile">
-                            <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-icon">
-                            <?php echo htmlspecialchars($nome_solicitante); ?>
-                            &#9662; </button>
-                        <div class="dropdown-content">
-                            <a href="perfil.php">Meus Dados</a>
-                            <a href="backend/logout.php">Sair</a>
-                        </div>
-                    </div>
-
-                <?php
-                else:
-                ?>
-                    <a href="login.php" class="btn-login">Login/Cadastro</a>
-
-                <?php endif; ?>
-            </div>
-        </div>
-    </header>
+        </header>
 
     <main class="container">
-
+        
         <a href="index.php#galeria" class="voltar-link"><i class="fas fa-arrow-left"></i> Voltar Aos Animais</a>
+        
+        <?php if(isset($_GET['sucesso']) && $_GET['sucesso'] == 'solicitacao_enviada'): ?>
+            <div class="aviso-sucesso" style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin-bottom: 1rem;">
+                <strong>Solicitação enviada com sucesso!</strong> A administração entrará em contato em breve.
+            </div>
+        <?php endif; ?>
 
         <div class="animal-detalhe-container">
-
+            
             <div class="detalhe-imagem">
                 <?php if (!empty($animal['imagem_url'])): ?>
                     <img src="uploads/<?php echo htmlspecialchars($animal['imagem_url']); ?>" alt="Foto de <?php echo htmlspecialchars($animal['nome']); ?>">
                 <?php else: ?>
-                    <img src="assets/images/placeholder-dog.jpg" alt="Animal sem foto"> <?php endif; ?>
+                    <img src="assets/images/placeholder-dog.jpg" alt="Animal sem foto"> 
+                <?php endif; ?>
             </div>
 
             <div class="detalhe-info">
@@ -153,14 +144,14 @@ elseif (isset($_SESSION['admin_id'])) {
                         <span>Sexo</span>
                         <strong><?php echo htmlspecialchars($animal['sexo']); ?></strong>
                     </div>
-
+                    
                     <div class="info-idade-animal" data-nascimento="<?php echo htmlspecialchars($animal['data_nascimento']); ?>">
                         <i class="fas fa-calendar-alt icon-idade"></i>
                         <div> <span>Idade</span>
                             <strong class="idade-calculada">Calculando...</strong>
                         </div>
                     </div>
-
+                    
                     <div>
                         <i class="fas fa-heartbeat icon-status"></i>
                         <span>Status</span>
@@ -173,7 +164,7 @@ elseif (isset($_SESSION['admin_id'])) {
                 <h2>Sobre <?php echo htmlspecialchars($animal['nome']); ?></h2>
                 <p><?php echo nl2br(htmlspecialchars($animal['descricao_historia'] ?? 'Nenhuma história cadastrada.')); ?></p>
                 <p><?php echo nl2br(htmlspecialchars($animal['personalidade'] ?? 'Nenhuma personalidade cadastrada.')); ?></p>
-
+                
                 <div class="cuidados-box">
                     <strong><i class="fas fa-check-circle"></i> Cuidados Veterinários</strong>
                     <ul>
@@ -183,17 +174,58 @@ elseif (isset($_SESSION['admin_id'])) {
                     </ul>
                 </div>
 
-                <a href="<?php echo $link_adotar; ?>" class="<?php echo $classe_botao; ?>" <?php echo $disabled; ?>>
-                    <?php echo $texto_adotar; ?>
-                </a>
+                <?php if ($solicitacao_pendente): ?>
+                    <span class="aviso-pendente">
+                        Você já tem uma solicitação para este animal.
+                    </span>
+                <?php endif; ?>
 
+                <?php
+                // Se for "Sinal Verde" (Caso 5)
+                if ($mostrar_modal_btn):
+                ?>
+                    <button id="btn-abrir-modal-adocao" class="<?php echo $classe_botao; ?>">
+                        <?php echo $texto_adotar; ?>
+                    </button>
+                <?php else: ?>
+                    <a href="<?php echo $link_adotar; ?>" class="<?php echo $classe_botao; ?>" <?php echo $disabled; ?>>
+                        <?php echo $texto_adotar; ?>
+                    </a>
+                <?php endif; ?>
+                </div> </div> <div class="modal-overlay" id="modal-adocao">
+            <div class="modal-box">
+                <button class="modal-close" id="btn-fechar-modal-adocao">&times;</button>
+                
+                <h2>Confirmar Solicitação</h2>
+                <p>Você está prestes a solicitar a adoção de <strong><?php echo htmlspecialchars($animal['nome']); ?></strong>.</p>
+                <p>Seu perfil será enviado para análise. Você pode adicionar uma mensagem e sugerir uma data para visita.</p>
+
+                <form action="backend/processa_solicitacao.php" method="POST">
+                    <input type="hidden" name="id_animal" value="<?php echo $animal['id']; ?>">
+                    
+                    <div class="form-group">
+                        <label for="data_visita">Sugira uma data e hora para visita:</label>
+                        <input type="datetime-local" id="data_visita" name="data_visita_sugerida">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem (Opcional):</label>
+                        <textarea id="mensagem" name="mensagem" rows="3" placeholder="Ex: Tenho uma casa com quintal e adoraria conhecê-lo(a)..."></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancelar" id="btn-cancelar-modal-adocao">Cancelar</button>
+                        <button type="submit" class="btn-submit">Enviar Solicitação</button>
+                    </div>
+                </form>
             </div>
         </div>
-    </main>
+        </main>
 
     <footer>
-    </footer>
+        </footer>
+
+    <script src="assets/js/funcoes.js"></script> <script src="assets/js/main.js"></script>
 
 </body>
-
 </html>

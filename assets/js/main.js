@@ -47,5 +47,39 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
-// 3. OUTRAS FUNÇÕES DO INDEX
-// ...
+
+//--- Lógica do Modal de Adoção ---
+document.addEventListener('DOMContentLoaded', function () {
+
+    const btnAbrir = document.getElementById('btn-abrir-modal-adocao');
+    const btnFechar = document.getElementById('btn-fechar-modal-adocao');
+    const btnCancelar = document.getElementById('btn-cancelar-modal-adocao');
+    const modal = document.getElementById('modal-adocao');
+
+    // Só roda se os elementos existirem nesta página
+    if (btnAbrir && modal) {
+
+        // Abrir o modal
+        btnAbrir.addEventListener('click', () => {
+            modal.classList.add('ativo');
+        });
+
+        // Fechar no (X)
+        btnFechar.addEventListener('click', () => {
+            modal.classList.remove('ativo');
+        });
+
+        // Fechar no (Cancelar)
+        btnCancelar.addEventListener('click', () => {
+            modal.classList.remove('ativo');
+        });
+
+        // Fechar se clicar fora da caixa
+        modal.addEventListener('click', (e) => {
+            // Se o alvo do clique for o overlay (fundo)
+            if (e.target === modal) {
+                modal.classList.remove('ativo');
+            }
+        });
+    }
+});

@@ -830,3 +830,89 @@ footer .container {
     /* Coluna única no mobile */
   }
 }
+
+/* --- 13. Estilos do Modal de Solicitação --- */
+
+.modal-overlay {
+  display: none;
+  /* Escondido por padrão */
+  position: fixed;
+  /* Cobre a tela inteira */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-overlay.ativo {
+  display: flex;
+  /* Mostra o modal */
+}
+
+.modal-box {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #aaa;
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: #333;
+}
+
+.modal-box h2 {
+  margin-top: 0;
+}
+
+.modal-box .form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.btn-cancelar {
+  background: #eee;
+  color: #333;
+  padding: 0.75rem 1rem;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btn-cancelar:hover {
+  background: #ddd;
+}
+
+/* --- 14. Aviso de Solicitação Pendente --- */
+
+.aviso-pendente {
+    display: block;
+    padding: 1rem;
+    background: #fffbe6; /* Amarelo claro */
+    border: 1px solid #ffe58f;
+    color: #d4b106; /* Amarelo escuro */
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
