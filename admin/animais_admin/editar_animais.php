@@ -315,6 +315,12 @@ try {
                             </td>
 
                             <td style="text-align: center; vertical-align: middle;">
+                                <a href="../vacinas_admin/editar_vacina.php?id=<?php echo $vacina['id']; ?>"
+                                    class="btn-editar"
+                                    style="padding: 5px 8px; font-size: 0.9rem; margin-right: 5px;"
+                                    title="Editar Vacina">
+                                    ✏️
+                                </a>
                                 <a href="../../backend/animais_backend/processa_exclusao_vacina.php?id_vacina=<?php echo $vacina['id']; ?>&id_animal=<?php echo $animal['id']; ?>"
                                     class="btn-excluir"
                                     onclick="return confirm('Remover esta vacina?');"
