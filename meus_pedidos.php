@@ -62,7 +62,7 @@ if (isset($_SESSION['solicitante_id'])) {
 
     <header class="navbar">
         <div class="container">
-            <a href="index.php" class="logo">Ajuda pet</a>
+            <a href="index.php" class="logo">Meus pedidos</a>
             <nav>
                 <ul>
                     <li><a href="index.php">Início</a></li>

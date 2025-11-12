@@ -210,7 +210,6 @@ elseif (isset($_SESSION['solicitante_id']) && $animal['status'] == 'Disponível'
 
             <div class="detalhe-info">
                 <h1><?php echo htmlspecialchars($animal['nome']); ?></h1>
-                <p class="localizacao"><i class="fas fa-map-marker-alt"></i> São Paulo, SP</p>
                 <div class="info-grid">
                     <div>
                         <i class="fas fa-paw icon-porte"></i>
@@ -239,7 +238,8 @@ elseif (isset($_SESSION['solicitante_id']) && $animal['status'] == 'Disponível'
                 </div>
                 <h2>Sobre <?php echo htmlspecialchars($animal['nome']); ?></h2>
                 <p><?php echo nl2br(htmlspecialchars($animal['descricao_historia'] ?? '...')); ?></p>
-                <p><?php echo nl2br(htmlspecialchars($animal['personalidade'] ?? '...')); ?></p>
+                <br>
+                <p><b>Personalidade: </b><?php echo nl2br(htmlspecialchars($animal['personalidade'] ?? '...')); ?></p>
                 <div class="cuidados-box">
                     <strong><i class="fas fa-check-circle"></i> Cuidados Veterinários</strong>
                     <ul>
