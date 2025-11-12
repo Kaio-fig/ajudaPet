@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Nov-2025 às 13:21
+-- Tempo de geração: 12-Nov-2025 às 14:36
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -73,6 +73,15 @@ CREATE TABLE `animal` (
   `id_adotante` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Extraindo dados da tabela `animal`
+--
+
+INSERT INTO `animal` (`id`, `id_admin_cadastro`, `nome`, `sexo`, `raca`, `porte`, `data_nascimento`, `peso`, `cor_pelagem`, `personalidade`, `imagem_url`, `castrado`, `microchip`, `status`, `descricao_historia`, `observacoes`, `data_cadastro`, `data_adocao`, `id_adotante`) VALUES
+(1, 1, 'Totó', 'Macho', 'Vira-lata', 'Médio', '2023-07-04', 15.30, 'Preto e branco', 'Dócil', 'animal_691324b0232f9.jpg', 0, '', 'Adotado', 'Extremamente amável e carinhoso, já deita de barriga para cima assim que é chamado', '', '2025-11-11 11:57:36', NULL, NULL),
+(2, 1, 'Thor', 'Macho', 'SRD', 'Grande', '2016-02-02', 40.00, 'Preto', 'Dócil', 'animal_691360b5293ea.jfif', 1, '', 'Adotado', 'Thor foi vitima de uma doença grave de pele, sofreu ataques de outros cachorros que o deixaram com sequelas', 'artrose, artrite, obeso', '2025-11-11 16:13:41', '2025-11-12 10:15:03', 1),
+(3, 1, 'Mel', 'Fêmea', 'SRD', 'Pequeno', '2023-06-12', 7.00, 'preto', 'Chata', 'animal_69147e8fdc7d5.jfif', 1, '', 'Disponível', 'Mel passou por uma serie de dificuldades blbablablablabla', 'Saudavel', '2025-11-12 12:33:19', NULL, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -86,8 +95,21 @@ CREATE TABLE `solicitacaoadoção` (
   `id_admin_avaliador` int(11) DEFAULT NULL,
   `data_solicitacao` timestamp NOT NULL DEFAULT current_timestamp(),
   `status` enum('Pendente','Aprovada','Rejeitada') DEFAULT 'Pendente',
-  `observacoes` text DEFAULT NULL
+  `visto_pelo_solicitante` tinyint(1) NOT NULL DEFAULT 0,
+  `observacoes` text DEFAULT NULL,
+  `data_visita_sugerida` datetime DEFAULT NULL,
+  `data_visita_aprovada` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Extraindo dados da tabela `solicitacaoadoção`
+--
+
+INSERT INTO `solicitacaoadoção` (`id`, `id_animal`, `id_solicitante`, `id_admin_avaliador`, `data_solicitacao`, `status`, `visto_pelo_solicitante`, `observacoes`, `data_visita_sugerida`, `data_visita_aprovada`) VALUES
+(1, 1, 1, 1, '2025-11-12 12:18:04', 'Rejeitada', 1, 'banana', '2025-11-13 09:17:00', NULL),
+(4, 1, 1, 1, '2025-11-12 12:21:20', 'Aprovada', 1, 'sim, banana', '2025-11-13 09:17:00', '2025-11-13 10:00:00'),
+(5, 2, 1, 1, '2025-11-12 12:30:02', 'Rejeitada', 1, 'Maçã\r\n', NULL, NULL),
+(6, 2, 1, 1, '2025-11-12 13:14:27', 'Aprovada', 1, 'sga', NULL, '2025-11-12 10:14:00');
 
 -- --------------------------------------------------------
 
@@ -105,8 +127,14 @@ CREATE TABLE `solicitante` (
   `endereco_completo` varchar(500) DEFAULT NULL,
   `cidade` varchar(100) DEFAULT NULL,
   `estado` varchar(2) DEFAULT NULL,
+  `cep` varchar(10) DEFAULT NULL,
   `tipo_moradia` varchar(100) DEFAULT NULL,
+  `possui_quintal` enum('Sim','Não') DEFAULT NULL,
   `ja_teve_pets` tinyint(1) DEFAULT NULL,
+  `descricao_pets_anteriores` text DEFAULT NULL,
+  `experiencia_animais` varchar(255) DEFAULT NULL,
+  `disponibilidade_tempo` varchar(255) DEFAULT NULL,
+  `motivacao_adotar` text DEFAULT NULL,
   `data_cadastro` timestamp NOT NULL DEFAULT current_timestamp(),
   `ativo` tinyint(1) DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -115,8 +143,8 @@ CREATE TABLE `solicitante` (
 -- Extraindo dados da tabela `solicitante`
 --
 
-INSERT INTO `solicitante` (`id`, `nome`, `cpf`, `email`, `senha`, `telefone`, `endereco_completo`, `cidade`, `estado`, `tipo_moradia`, `ja_teve_pets`, `data_cadastro`, `ativo`) VALUES
-(1, 'teste da silva', '123456789010', 'teste@email.com', '$2y$10$K6jaR0gKmX2y3.yBghfUIedmKAzHauaEBiiIYOrmK4n1XCekPex6W', '99999999999', 'rua dos bobos nº0', 'ituvecuty', 'sp', 'casa', 1, '2025-11-10 12:19:15', 1);
+INSERT INTO `solicitante` (`id`, `nome`, `cpf`, `email`, `senha`, `telefone`, `endereco_completo`, `cidade`, `estado`, `cep`, `tipo_moradia`, `possui_quintal`, `ja_teve_pets`, `descricao_pets_anteriores`, `experiencia_animais`, `disponibilidade_tempo`, `motivacao_adotar`, `data_cadastro`, `ativo`) VALUES
+(1, 'teste da silva', '123456789010', 'teste@email.com', '$2y$10$K6jaR0gKmX2y3.yBghfUIedmKAzHauaEBiiIYOrmK4n1XCekPex6W', '99999999999', 'rua dos bobos nº0', 'ituvecuty', 'sp', NULL, 'casa', NULL, 1, NULL, NULL, NULL, NULL, '2025-11-10 12:19:15', 1);
 
 -- --------------------------------------------------------
 
@@ -191,13 +219,13 @@ ALTER TABLE `administrador`
 -- AUTO_INCREMENT de tabela `animal`
 --
 ALTER TABLE `animal`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de tabela `solicitacaoadoção`
 --
 ALTER TABLE `solicitacaoadoção`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `solicitante`
