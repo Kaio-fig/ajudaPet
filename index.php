@@ -32,6 +32,19 @@ $imagens_carrossel[] = 'assets/images/hero-bg.jpg';
 
 // Embaralha a ordem
 shuffle($imagens_carrossel);
+
+$notificacoes_count = 0; // Inicia a contagem
+if (isset($_SESSION['solicitante_id'])) {
+    $id_solicitante_logado = $_SESSION['solicitante_id'];
+    $sql_notif = "SELECT COUNT(*) FROM SolicitacaoAdoção 
+                  WHERE id_solicitante = ? 
+                  AND visto_pelo_solicitante = 0 
+                  AND (status = 'Aprovada' OR status = 'Rejeitada')";
+    $stmt_notif = $pdo->prepare($sql_notif);
+    $stmt_notif->execute([$id_solicitante_logado]);
+    $notificacoes_count = $stmt_notif->fetchColumn();
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -77,6 +90,12 @@ shuffle($imagens_carrossel);
                             &#9662; </button>
                         <div class="dropdown-content">
                             <a href="perfil.php">Meus Dados</a>
+                            <a href="meus_pedidos.php" class="link-notificacao">
+                                Meus Pedidos
+                                <?php if ($notificacoes_count > 0): ?>
+                                    <span class="notification-badge"><?php echo $notificacoes_count; ?></span>
+                                <?php endif; ?>
+                            </a>
                             <a href="backend/logout.php">Sair</a>
                         </div>
                     </div>
@@ -147,7 +166,9 @@ shuffle($imagens_carrossel);
     </footer>
     <script src="assets/js/funcoes.js" defer></script>
     <script src="assets/js/main.js" defer></script>
-    <script>const listaImagensCarrossel = <?php echo json_encode($imagens_carrossel); ?>;</script>
+    <script>
+        const listaImagensCarrossel = <?php echo json_encode($imagens_carrossel); ?>;
+    </script>
 
 </body>
 

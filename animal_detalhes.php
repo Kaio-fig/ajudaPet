@@ -100,15 +100,6 @@ elseif (isset($_SESSION['solicitante_id'])) {
     
     </head>
 <body>
-
-    <?php
-    // Recomendo fortemente usar "partials" para o header e footer
-    // Ex: require 'partials/header.php';
-    // Por enquanto, cole o HTML do seu header aqui.
-    ?>
-    <header class="navbar">
-        </header>
-
     <main class="container">
         
         <a href="index.php#galeria" class="voltar-link"><i class="fas fa-arrow-left"></i> Voltar Aos Animais</a>
