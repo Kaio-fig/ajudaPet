@@ -1,0 +1,75 @@
+/* assets/css/cadastro.css */
+/* Estilos específicos para a página de cadastro */
+
+/* 1. Estrutura Principal da Página */
+.cadastro-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 0; /* Mais padding por ser uma página maior */
+}
+
+/* 2. O "Card" de Cadastro */
+.cadastro-box {
+    width: 100%;
+    max-width: 800px; /* [MUDANÇA] Mais largo que o login */
+    background: var(--cor-light, #fff);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda, #eee);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.cadastro-box h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--cor-principal);
+}
+
+.cadastro-box > p { /* O <p> logo abaixo do h2 */
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* 3. Alerta de erro (reutiliza .aviso-erro de login.css se movido para global, ou duplicar) */
+.aviso-erro {
+    display: block;
+    padding: 1rem;
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+    color: #cf1322;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+/* 4. Estilos do Formulário (usa .form-group global) */
+.cadastro-box hr {
+    margin: 2rem 0;
+    border: none;
+    border-top: 1px solid var(--cor-borda, #eee);
+}
+
+/* Grid para alinhar campos lado a lado */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+/* Responsividade do grid */
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0; /* Remove o gap para empilhar */
+    }
+    
+    /* No mobile, re-adiciona o margin-bottom que o .form-group global já tem */
+    .form-grid .form-group {
+        margin-bottom: 1.25rem;
+    }
+}

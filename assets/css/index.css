@@ -137,7 +137,8 @@
 .info-card {
     border: 1px solid var(--cor-borda);
     border-radius: 8px;
-    padding: 2.5rem 2rem;
+    padding: 1rem;
+    margin: 2rem;
     text-align: center;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -171,6 +172,7 @@
 .info-card p {
     color: #555;
     line-height: 1.6;
+    
 }
 
 /* --- 4. Seção de Doações (Abas) --- */

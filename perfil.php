@@ -49,19 +49,22 @@ if (isset($_SESSION['solicitante_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Dados - Ajudapet</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/perfil.css">
 </head>
 
 <body>
 
     <header class="navbar">
         <div class="container">
-            <a href="index.php" class="logo">Meu perfil</a>
+            <a href="index.php" class="logo">Ajuda pet</a>
             <nav>
                 <ul>
                     <li><a href="index.php">Início</a></li>
-                    <li><a href="index.php">Animais</a></li>
-                    <li><a href="index.php">Instruções</a></li>
+                    <li><a href="#galeria">Animais</a></li>
+                    <li><a href="#como-funciona">Instruções</a></li>
+                    <li><a href="#doacoes">Doações</a></li>
                 </ul>
             </nav>
 
@@ -76,6 +79,7 @@ if (isset($_SESSION['solicitante_id'])) {
                 <?php
                 // VERIFICA SE É UM SOLICITANTE LOGADO
                 elseif (isset($_SESSION['solicitante_id'])):
+                    // Pega o nome do solicitante (o "Marcos Oli" do exemplo)
                     $nome_solicitante = $_SESSION['solicitante_nome'];
                 ?>
                     <div class="profile-dropdown">
@@ -105,10 +109,12 @@ if (isset($_SESSION['solicitante_id'])) {
         </div>
     </header>
 
-    <main class="container" style="padding-top: 2rem;">
+    <main class="container perfil-page-container">
 
         <div class="profile-header">
-            <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-avatar">
+            <div class="profile-avatar">
+                <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-icon">
+            </div>
             <div class="profile-info">
                 <h2><?php echo htmlspecialchars($solicitante['nome']); ?></h2>
                 <p><?php echo htmlspecialchars($solicitante['email']); ?></p>
@@ -149,7 +155,7 @@ if (isset($_SESSION['solicitante_id'])) {
                     <label for="endereco_completo">Endereço (Rua, N°, Complemento):</label>
                     <input type="text" id="endereco_completo" name="endereco_completo" value="<?php echo htmlspecialchars($solicitante['endereco_completo']); ?>">
                 </div>
-                <div class="form-grid">
+                <div class="form-grid tres-colunas">
                     <div class="form-group">
                         <label for="cidade">Cidade:</label>
                         <input type="text" id="cidade" name="cidade" value="<?php echo htmlspecialchars($solicitante['cidade']); ?>">
@@ -180,34 +186,31 @@ if (isset($_SESSION['solicitante_id'])) {
                         </select>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="ja_teve_pets">Já possuiu outros pets?</label>
-                    <select id="ja_teve_pets" name="ja_teve_pets">
-                        <option value="0" <?php if ($solicitante['ja_teve_pets'] == 0) echo 'selected'; ?>>Não</option>
-                        <option value="1" <?php if ($solicitante['ja_teve_pets'] == 1) echo 'selected'; ?>>Sim</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="descricao_pets_anteriores">Descreva seus outros pets (se houver):</label>
-                    <textarea id="descricao_pets_anteriores" name="descricao_pets_anteriores" rows="4"><?php echo htmlspecialchars($solicitante['descricao_pets_anteriores']); ?></textarea>
-                </div>
             </div>
 
             <div id="tab-experiencia" class="tab-content">
                 <h3>Experiência com Animais</h3>
+
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="experiencia_animais">Experiência com Animais:</label>
-                        <input type="text" id="experiencia_animais" name="experiencia_animais" value="<?php echo htmlspecialchars($solicitante['experiencia_animais']); ?>" placeholder="Nenhuma, Pouca, Muita...">
+                        <input type="text" id="experiencia_animais" name="experiencia_animais"
+                            value="<?php echo htmlspecialchars($solicitante['experiencia_animais']); ?>"
+                            placeholder="Nenhuma, Pouca, Muita...">
                     </div>
+
                     <div class="form-group">
                         <label for="disponibilidade_tempo">Disponibilidade de Tempo:</label>
-                        <input type="text" id="disponibilidade_tempo" name="disponibilidade_tempo" value="<?php echo htmlspecialchars($solicitante['disponibilidade_tempo']); ?>" placeholder="Manhã, Tarde, Integral...">
+                        <input type="text" id="disponibilidade_tempo" name="disponibilidade_tempo"
+                            value="<?php echo htmlspecialchars($solicitante['disponibilidade_tempo']); ?>"
+                            placeholder="Manhã, Tarde, Integral...">
                     </div>
                 </div>
+
                 <div class="form-group">
                     <label for="motivacao_adotar">Motivação para Adotar:</label>
-                    <textarea id="motivacao_adotar" name="motivacao_adotar" rows="6"><?php echo htmlspecialchars($solicitante['motivacao_adotar']); ?></textarea>
+                    <textarea id="motivacao_adotar" name="motivacao_adotar" rows="6"
+                        placeholder="Conte-nos por que você quer adotar um animal e como pretende cuidar dele..."><?php echo htmlspecialchars($solicitante['motivacao_adotar']); ?></textarea>
                 </div>
             </div>
 
@@ -225,14 +228,9 @@ if (isset($_SESSION['solicitante_id'])) {
 
             tabLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    // Pega o ID da aba alvo (ex: "tab-pessoais")
                     const tabId = link.dataset.tab;
-
-                    // 1. Remove 'active' de todos os links e conteúdos
                     tabLinks.forEach(l => l.classList.remove('active'));
                     tabContents.forEach(c => c.classList.remove('active'));
-
-                    // 2. Adiciona 'active' ao link clicado e ao conteúdo correspondente
                     link.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
                 });
