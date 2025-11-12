@@ -1,0 +1,166 @@
+/* assets/css/global.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
+/* --- 1. Variáveis Globais (Root) --- */
+:root {
+    --cor-principal: #E67E22;
+    --cor-principal-hover: #d35400;
+    --cor-texto: #333333;
+    --cor-fundo: #f9f9f9;
+    --cor-dark: #2c3e50;
+    --cor-light: #ffffff;
+    --cor-borda: #eeeeee;
+    --cor-sucesso-bg: #d4edda;
+    --cor-sucesso-border: #c3e6cb;
+    --cor-sucesso-text: #155724;
+    --cor-aviso-bg: #fffbe6;
+    --cor-aviso-border: #ffe58f;
+    --cor-aviso-text: #d4b106;
+}
+
+/* --- 2. Reset Básico --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* --- 3. Componentes Globais (Navbar, Footer) --- */
+.navbar {
+    background-color: var(--cor-light);
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--cor-borda);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--cor-principal);
+    text-decoration: none;
+}
+.navbar nav ul { list-style: none; display: flex; }
+.navbar nav li { margin-left: 1.5rem; }
+.navbar nav a { text-decoration: none; color: var(--cor-dark); font-weight: 500; }
+.navbar nav a:hover { color: var(--cor-principal); }
+
+footer {
+    background-color: var(--cor-dark);
+    color: #aaa;
+    padding: 3rem 0;
+    margin-top: 3rem;
+}
+footer .container { text-align: center; }
+
+/* --- 4. Componentes (Botões, Dropdowns) --- */
+.btn-login {
+    background-color: var(--cor-principal);
+    color: var(--cor-light);
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.btn-login:hover { background-color: var(--cor-principal-hover); }
+
+.nav-buttons { display: flex; align-items: center; gap: 1rem; }
+.btn-profile {
+    background: none; border: none; color: var(--cor-dark);
+    font-weight: 500; font-family: 'Montserrat', sans-serif; font-size: 1rem;
+    cursor: pointer; display: flex; align-items: center; gap: 0.5rem; text-decoration: none;
+}
+.btn-profile .profile-icon { width: 24px; height: 24px; border-radius: 50%; }
+.profile-dropdown { position: relative; display: inline-block; }
+.dropdown-content {
+    display: none; position: absolute; right: 0; top: 100%;
+    background-color: var(--cor-light); min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2); z-index: 100;
+    border-radius: 5px; overflow: hidden;
+}
+.dropdown-content a { color: var(--cor-dark); padding: 12px 16px; text-decoration: none; display: block; font-size: 0.9rem; }
+.dropdown-content a:hover { background-color: #f1f1f1; color: var(--cor-principal); }
+.profile-dropdown:hover .dropdown-content { display: block; }
+
+/* Notificações */
+.link-notificacao { position: relative; display: flex; align-items: center; gap: 8px; }
+.notification-badge {
+    background-color: #cf1322; color: white; font-size: 0.7rem;
+    padding: 2px 6px; border-radius: 50%; font-weight: 700;
+}
+
+/* --- 5. Componentes (Formulários) --- */
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%; padding: 0.75rem; border: 1px solid #ccc;
+    border-radius: 5px; font-family: 'Montserrat', sans-serif;
+}
+.form-actions { display: flex; justify-content: flex-end; gap: 1rem; margin-top: 1.5rem; }
+.btn-submit {
+    display: block; background-color: var(--cor-principal); color: white;
+    text-align: center; padding: 0.75rem; text-decoration: none;
+    border-radius: 5px; font-weight: 500; transition: background-color 0.3s ease;
+    border: none; cursor: pointer; font-size: 1rem;
+}
+.btn-submit:hover { background-color: var(--cor-principal-hover); }
+.btn-cancelar {
+    background: #eee; color: #333; padding: 0.75rem 1rem;
+    border-radius: 5px; border: 1px solid #ccc; cursor: pointer; font-weight: 500;
+}
+.btn-cancelar:hover { background: #ddd; }
+
+/* --- 6. Componentes (Avisos) --- */
+.aviso-pendente {
+    display: block; padding: 1rem; background: var(--cor-aviso-bg);
+    border: 1px solid var(--cor-aviso-border); color: var(--cor-aviso-text);
+    border-radius: 5px; text-align: center; margin-bottom: 1.5rem; font-weight: 500;
+}
+.aviso-sucesso {
+    display: block; padding: 1rem; background-color: var(--cor-sucesso-bg);
+    border: 1px solid var(--cor-sucesso-border); color: var(--cor-sucesso-text);
+    border-radius: 5px; text-align: center; margin-bottom: 1.5rem; font-weight: 500;
+}
+
+/* --- 7. Componentes (Modais) --- */
+.modal-overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%; background: rgba(0, 0, 0, 0.7);
+    z-index: 1000; align-items: center; justify-content: center;
+}
+.modal-overlay.ativo { display: flex; }
+.modal-box {
+    background: white; padding: 2rem; border-radius: 8px;
+    width: 90%; max-width: 500px; position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-close {
+    position: absolute; top: 10px; right: 15px; background: none;
+    border: none; font-size: 2rem; color: #aaa; cursor: pointer;
+}
+.modal-close:hover { color: #333; }
+.modal-box h2 { margin-top: 0; }

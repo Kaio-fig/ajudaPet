@@ -53,7 +53,8 @@ if (isset($_SESSION['solicitante_id'])) {
     <meta charset="UTF-B">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajudapet - Adote seu novo melhor amigo</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/index.css">
 </head>
 
 <body>
@@ -210,6 +211,7 @@ if (isset($_SESSION['solicitante_id'])) {
                 <div class="paypal-info">
                     <strong>Doe com PayPal ou Cartão</strong>
                     <p>Clique no botão abaixo para ser redirecionado a um ambiente de pagamento seguro.</p>
+                    <br>
                     <a href="https://paypal.me/suaong" target="_blank" class="btn-submit" style="width: auto;">
                         Doar com PayPal
                     </a>

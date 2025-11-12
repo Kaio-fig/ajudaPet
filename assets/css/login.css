@@ -1,0 +1,79 @@
+/* 1. Estrutura Principal da Página */
+.login-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem 0;
+}
+
+/* 2. O "Card" de Login */
+.login-box {
+    width: 100%;
+    max-width: 450px;
+    /* Define a largura do card */
+    background: var(--cor-light, #fff);
+    padding: 2.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--cor-borda, #eee);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.login-box h2 {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--cor-principal);
+}
+
+.login-box>p {
+    /* O <p> logo abaixo do h2 */
+    text-align: center;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* 3. Mensagens de Alerta (Sucesso, Erro) */
+/* (Reutilizamos as classes globais, mas podemos dar margem) */
+.login-box .aviso-sucesso,
+.login-box .aviso-pendente {
+    /* .aviso-pendente é o amarelo/azul */
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+/* Alerta de erro específico */
+.aviso-erro {
+    display: block;
+    padding: 1rem;
+    background-color: #fff1f0;
+    border: 1px solid #ffa39e;
+    color: #cf1322;
+    border-radius: 5px;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+
+
+/* 4. Estilos do Formulário (usa .form-group global) */
+.login-box .form-group {
+    margin-bottom: 1.25rem;
+}
+
+/* 5. Link para Cadastro */
+.register-link {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.register-link a {
+    color: var(--cor-principal);
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
