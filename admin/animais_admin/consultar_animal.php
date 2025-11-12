@@ -50,6 +50,22 @@ try {
     <main class="container" style="padding-top: 2rem;">
         <h2>Gerenciar Animais Cadastrados</h2>
         
+        <?php        
+        // Mensagem de SUCESSO (do script de exclusão)
+        if (isset($_GET['sucesso']) && $_GET['sucesso'] == 'exclusao') {
+            echo "<p style='color:green; background-color: #d4edda; padding: 10px; border-radius: 5px; margin-top: 1rem;'>
+                    Animal excluído com sucesso!
+                  </p>";
+        }
+        
+        // Mensagem de ERRO (que acabamos de criar)
+        if (isset($_GET['erro']) && $_GET['erro'] == 'nao_encontrado') {
+            echo "<p style='color:red; background-color: #f8d7da; padding: 10px; border-radius: 5px; margin-top: 1rem;'>
+                    Erro: O animal que você tentou acessar não foi encontrado.
+                  </p>";
+        }
+        ?>
+
         <table class="tabela-admin">
             <thead>
                 <tr>
@@ -74,12 +90,12 @@ try {
                             <td><?php echo htmlspecialchars($animal['nome']); ?></td>
                             <td><?php echo htmlspecialchars($animal['status']); ?></td>
                             <td class="acoes">
-                                <a href="editar_animal.php?id=<?php echo $animal['id']; ?>" class="btn-editar">
+                                <a href="./editar_animais.php?id=<?php echo $animal['id']; ?>" class="btn-editar">
                                     Editar
                                 </a>
-                                <a href="../../backend/animais_backend/excluir_animal.php?id=<?php echo $animal['id']; ?>" class="btn-excluir">
+                                <a href="deletar_animal.php?id=<?php echo $animal['id'];?>" class="btn-excluir">
                                     Excluir
-                                </a>
+                                </a>    
                             </td>
                         </tr>
                     <?php endforeach; ?>
@@ -88,10 +104,10 @@ try {
                         <td colspan="5">Nenhum animal cadastrado no momento.</td>
                     </tr>
                 <?php endif; ?>
-
             </tbody>
         </table>
-
     </main>
+    </body>
+</html>
 </body>
 </html>
