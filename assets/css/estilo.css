@@ -76,6 +76,7 @@ img {
   font-weight: 500;
   transition: color 0.3s ease;
 }
+
 .navbar nav a:hover {
   color: var(--cor-principal);
 }
@@ -89,21 +90,26 @@ img {
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
+
 .btn-login:hover {
   background-color: var(--cor-principal-hover);
 }
 
 /* --- 5. Seção Hero (Onde o Figma começa) --- */
 .hero {
-  height: 60vh; /* Altura da "janela" */
-  background-color: var(--cor-dark); /* Cor de fallback */
-  
+  height: 60vh;
+  /* Altura da "janela" */
+  background-color: var(--cor-dark);
+  /* Cor de fallback */
+
   transition: background-image 1s ease-in-out;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  background-blend-mode: multiply; /* Efeito de escurecer a imagem */
-  background-color: rgba(0, 0, 0, 0.5); /* Overlay escuro */
+  background-blend-mode: multiply;
+  /* Efeito de escurecer a imagem */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Overlay escuro */
 
   /* Alinhando o texto no centro */
   display: flex;
@@ -119,6 +125,7 @@ img {
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
+
 .hero-content p {
   font-size: 1.25rem;
   font-weight: 400;
@@ -135,7 +142,8 @@ img {
   font-weight: 700;
   margin-bottom: 0.5rem;
 }
-#galeria > p {
+
+#galeria>p {
   text-align: center;
   font-size: 1.1rem;
   color: #666;
@@ -156,6 +164,7 @@ img {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 .animal-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
@@ -199,6 +208,7 @@ img {
   font-weight: 500;
   transition: background-color 0.3s ease;
 }
+
 .btn-detalhes:hover {
   background-color: var(--cor-principal-hover);
 }
@@ -225,6 +235,7 @@ footer .container {
   .hero-content h1 {
     font-size: 3.5rem;
   }
+
   .hero-content p {
     font-size: 1.5rem;
   }
@@ -243,11 +254,13 @@ footer .container {
     flex-direction: column;
     gap: 1rem;
   }
+
   .navbar nav ul {
     flex-direction: column;
     text-align: center;
     gap: 0.5rem;
   }
+
   .navbar nav li {
     margin-left: 0;
   }
@@ -255,321 +268,565 @@ footer .container {
   .hero {
     height: 40vh;
   }
+
   .hero-content h1 {
     font-size: 2.2rem;
   }
 }
 
 .nav-buttons {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 /* Botão de perfil (tanto admin quanto solicitante) */
 .btn-profile {
-    background: none;
-    border: none;
-    color: var(--cor-dark);
-    font-weight: 500;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    text-decoration: none;
+  background: none;
+  border: none;
+  color: var(--cor-dark);
+  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
 }
+
 .btn-profile .profile-icon {
-    width: 24px;
-    height: 24px;
-    border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
 }
 
 /* O "container" do dropdown */
 .profile-dropdown {
-    position: relative; /* Pai do 'absolute' */
-    display: inline-block;
+  position: relative;
+  /* Pai do 'absolute' */
+  display: inline-block;
 }
 
 /* O conteúdo que aparece no hover */
 .dropdown-content {
-    display: none; /* Escondido por padrão */
-    position: absolute;
-    right: 0;
-    top: 100%; /* Aparece logo abaixo do botão */
-    background-color: var(--cor-light);
-    min-width: 160px;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-    z-index: 100;
-    border-radius: 5px;
-    overflow: hidden;
+  display: none;
+  /* Escondido por padrão */
+  position: absolute;
+  right: 0;
+  top: 100%;
+  /* Aparece logo abaixo do botão */
+  background-color: var(--cor-light);
+  min-width: 160px;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  border-radius: 5px;
+  overflow: hidden;
 }
 
 /* Links dentro do dropdown */
 .dropdown-content a {
-    color: var(--cor-dark);
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
-    font-size: 0.9rem;
+  color: var(--cor-dark);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  font-size: 0.9rem;
 }
 
 /* Efeito hover nos links */
 .dropdown-content a:hover {
-    background-color: #f1f1f1;
-    color: var(--cor-principal);
+  background-color: #f1f1f1;
+  color: var(--cor-principal);
 }
 
 .profile-dropdown:hover .dropdown-content {
-    display: block;
+  display: block;
 }
+
 /* --- 10. Estilos da Página de Perfil --- */
 
 /* (Estilos para inputs, etc., já devem estar no seu CSS de cadastro) */
 .form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
 }
+
 /* Grid com 3 colunas para o endereço */
 #tab-pessoais .form-grid:nth-of-type(2) {
-    grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 2fr 1fr 1fr;
 }
+
 /* Responsividade do grid */
 @media (max-width: 768px) {
-    .form-grid,
-    #tab-pessoais .form-grid:nth-of-type(2) {
-        grid-template-columns: 1fr;
-    }
+
+  .form-grid,
+  #tab-pessoais .form-grid:nth-of-type(2) {
+    grid-template-columns: 1fr;
+  }
 }
 
 .form-actions {
-    text-align: right;
-    margin-top: 1.5rem;
+  text-align: right;
+  margin-top: 1.5rem;
 }
+
 .btn-submit {
-    /* (Use o estilo .btn-detalhes ou .btn-login que já existe) */
-    background-color: var(--cor-principal);
-    color: white;
-    padding: 0.75rem 1.5rem;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
+  /* (Use o estilo .btn-detalhes ou .btn-login que já existe) */
+  background-color: var(--cor-principal);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
 }
+
 .btn-submit:hover {
-    background-color: var(--cor-principal-hover);
+  background-color: var(--cor-principal-hover);
 }
 
 
 /* --- Cabeçalho do Perfil --- */
 .profile-header {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
+
 .profile-avatar {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    background-color: #eee;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #eee;
 }
+
 .profile-info h2 {
-    margin: 0;
-    font-size: 1.75rem;
+  margin: 0;
+  font-size: 1.75rem;
 }
+
 .profile-info p {
-    margin: 0;
-    color: #666;
+  margin: 0;
+  color: #666;
 }
 
 /* --- Aviso Amarelo --- */
 .profile-warning {
-    background-color: #fffbe6;
-    border: 1px solid #ffe58f;
-    border-radius: 5px;
-    padding: 1rem;
-    margin-bottom: 2rem;
+  background-color: #fffbe6;
+  border: 1px solid #ffe58f;
+  border-radius: 5px;
+  padding: 1rem;
+  margin-bottom: 2rem;
 }
 
 /* --- Sistema de Abas --- */
 .tab-nav {
-    display: flex;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: -1px; /* Faz a aba ativa cobrir a borda */
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: -1px;
+  /* Faz a aba ativa cobrir a borda */
 }
+
 .tab-link {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    padding: 1rem 1.5rem;
-    border: none;
-    background-color: #f1f1f1;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    margin-right: 5px;
-    color: #555;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 1rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  background-color: #f1f1f1;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
+  margin-right: 5px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
+
 .tab-link.active {
-    background-color: var(--cor-light);
-    border: 1px solid #ccc;
-    border-bottom: 1px solid var(--cor-light); /* Mágica */
-    color: var(--cor-principal);
-    font-weight: 700;
+  background-color: var(--cor-light);
+  border: 1px solid #ccc;
+  border-bottom: 1px solid var(--cor-light);
+  /* Mágica */
+  color: var(--cor-principal);
+  font-weight: 700;
 }
 
 /* --- Conteúdo das Abas --- */
 .tab-content {
-    display: none; /* Escondido por padrão */
-    background-color: var(--cor-light);
-    border: 1px solid #ccc;
-    padding: 2rem;
-    border-radius: 0 5px 5px 5px;
+  display: none;
+  /* Escondido por padrão */
+  background-color: var(--cor-light);
+  border: 1px solid #ccc;
+  padding: 2rem;
+  border-radius: 0 5px 5px 5px;
 }
+
 .tab-content.active {
-    display: block; /* Mostra o ativo */
+  display: block;
+  /* Mostra o ativo */
 }
 
 /* --- 11. Estilos do Dashboard Admin --- */
 
 .admin-dashboard .admin-header {
-    margin: 2rem 0;
-    padding-bottom: 1rem;
-    border-bottom: 2px solid var(--cor-borda, #eee);
+  margin: 2rem 0;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid var(--cor-borda, #eee);
 }
+
 .admin-dashboard .admin-header h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
 }
+
 .admin-dashboard .admin-header p {
-    font-size: 1.1rem;
-    color: #555;
+  font-size: 1.1rem;
+  color: #555;
 }
 
 /* --- Abas de Navegação --- */
 .admin-tabs {
-    display: flex;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-    background-color: #f9f9f9;
-    padding: 0.5rem;
-    border-radius: 8px;
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  background-color: #f9f9f9;
+  padding: 0.5rem;
+  border-radius: 8px;
 }
+
 .tab-link {
-    flex: 1;
-    text-align: center;
-    padding: 0.75rem 1rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    border-radius: 5px;
-    background: var(--cor-light, #fff);
-    border: 1px solid var(--cor-borda, #eee);
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  flex: 1;
+  text-align: center;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  background: var(--cor-light, #fff);
+  border: 1px solid var(--cor-borda, #eee);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
+
 .tab-link:hover {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
+
 .tab-link.active {
-    background-color: var(--cor-principal);
-    color: var(--cor-light, #fff);
-    border-color: var(--cor-principal);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  background-color: var(--cor-principal);
+  color: var(--cor-light, #fff);
+  border-color: var(--cor-principal);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .notification-badge {
-    background-color: #cf1322;
-    color: white;
-    font-size: 0.75rem;
-    padding: 2px 6px;
-    border-radius: 50%;
-    margin-left: 5px;
+  background-color: #cf1322;
+  color: white;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 
 /* --- Cards de Estatística --- */
 .admin-dashboard h3 {
-    font-size: 1.5rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
 }
 
 .stat-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
 }
+
 .stat-card {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 1.5rem;
-    border: 1px solid #e8e8e8;
-    border-radius: 8px;
-    background: #fff;
-    border-left-width: 5px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  border: 1px solid #e8e8e8;
+  border-radius: 8px;
+  background: #fff;
+  border-left-width: 5px;
 }
+
 .stat-card .icon {
-    font-size: 2.5rem;
+  font-size: 2.5rem;
 }
+
 .stat-card .stat-info h2 {
-    font-size: 2.25rem;
-    margin: 0;
+  font-size: 2.25rem;
+  margin: 0;
 }
+
 .stat-card .stat-info p {
-    font-size: 1rem;
-    color: #555;
-    margin: 0;
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
 }
 
 /* --- Ações Rápidas --- */
 .quick-actions {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1rem;
 }
+
 .action-button {
-    flex: 1;
-    text-align: center;
-    padding: 1rem;
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    border-radius: 5px;
-    background: var(--cor-light, #fff);
-    border: 1px solid var(--cor-borda, #eee);
-    transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+  padding: 1rem;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  border-radius: 5px;
+  background: var(--cor-light, #fff);
+  border: 1px solid var(--cor-borda, #eee);
+  transition: all 0.3s ease;
 }
+
 .action-button:hover {
-    background-color: #f0f0f0;
-    color: var(--cor-principal);
-    border-color: var(--cor-principal);
+  background-color: #f0f0f0;
+  color: var(--cor-principal);
+  border-color: var(--cor-principal);
 }
+
 .action-button i {
-    margin-right: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 /* --- Responsividade do Dashboard --- */
 @media (max-width: 992px) {
-    .stat-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
+
 @media (max-width: 768px) {
-    .stat-grid {
-        grid-template-columns: 1fr;
-    }
-    .admin-tabs {
-        flex-direction: column;
-    }
-    .quick-actions {
-        flex-direction: column;
-    }
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-tabs {
+    flex-direction: column;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+}
+
+/* --- 12. Estilos da Página de Detalhes do Animal --- */
+
+.voltar-link {
+  display: inline-block;
+  margin: 2rem 0;
+  color: var(--cor-dark);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.voltar-link:hover {
+  color: var(--cor-principal);
+}
+
+.voltar-link i {
+  margin-right: 0.5rem;
+}
+
+.animal-detalhe-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+  background: var(--cor-light);
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.detalhe-imagem img {
+  width: 100%;
+  height: 500px;
+  /* Altura fixa para a imagem */
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.detalhe-info h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+
+.detalhe-info .localizacao {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.detalhe-info .localizacao i {
+  color: var(--cor-principal);
+  margin-right: 0.25rem;
+}
+
+/* --- Grid de Infos Rápidas --- */
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  border-top: 1px solid var(--cor-borda, #eee);
+  border-bottom: 1px solid var(--cor-borda, #eee);
+  padding: 1.5rem 0;
+}
+
+.info-grid>div {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.info-grid>div i {
+  font-size: 1.5rem;
+  color: var(--cor-principal);
+}
+
+.info-grid>div span {
+  display: block;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.info-grid>div strong {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+/* Cores do status */
+.status-disponível {
+  color: #28a745;
+}
+
+.status-adotado {
+  color: #dc3545;
+}
+
+.status-em {
+  color: #ffc107;
+}
+
+/* 'Em processo' */
+
+
+.detalhe-info h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  margin-top: 1rem;
+}
+
+.detalhe-info p {
+  color: #444;
+  line-height: 1.7;
+}
+
+/* --- Caixa de Cuidados --- */
+.cuidados-box {
+  background: #f6ffed;
+  /* Verde claro do mockup */
+  border: 1px solid #b7eb8f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+
+.cuidados-box strong {
+  color: #389e0d;
+  /* Verde escuro */
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.cuidados-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 1rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  /* 2 colunas */
+  gap: 0.5rem;
+}
+
+.cuidados-box li {
+  color: #444;
+}
+
+/* --- Botão de Adotar --- */
+.btn-adotar,
+.btn-adotar-disabled {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-adotar {
+  background-color: var(--cor-principal);
+  color: var(--cor-light);
+}
+
+.btn-adotar:hover {
+  background-color: var(--cor-principal-hover);
+  transform: translateY(-2px);
+}
+
+.btn-adotar-disabled {
+  background-color: #ccc;
+  color: #777;
+  cursor: not-allowed;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+  .animal-detalhe-container {
+    grid-template-columns: 1fr;
+    /* Coluna única */
+  }
+
+  .detalhe-imagem img {
+    height: 350px;
+    /* Altura menor no mobile */
+  }
+
+  .detalhe-info h1 {
+    font-size: 2rem;
+  }
+
+  .info-grid,
+  .cuidados-box ul {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 576px) {
+  .info-grid {
+    grid-template-columns: 1fr;
+    /* Coluna única no mobile */
+  }
 }

@@ -146,7 +146,7 @@ shuffle($imagens_carrossel);
         </div>
     </footer>
     <script src="assets/js/funcoes.js" defer></script>
-    <script src="assets/js/index.js" defer></script>
+    <script src="assets/js/main.js" defer></script>
     <script>const listaImagensCarrossel = <?php echo json_encode($imagens_carrossel); ?>;</script>
 
 </body>
