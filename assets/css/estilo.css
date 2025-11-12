@@ -1216,3 +1216,73 @@ footer .container {
   margin-bottom: 1.5rem;
   font-weight: 500;
 }
+
+/* --- 19. Seção "Como Funciona" (Cards Informativos) --- */
+
+#como-funciona {
+  padding: 3rem 0;
+  background-color: var(--cor-light, #fff);
+  /* Fundo branco */
+}
+
+#como-funciona h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.info-cards-container {
+  display: grid;
+  /* 3 colunas em desktop */
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.info-card {
+  border: 1px solid var(--cor-borda, #eee);
+  border-radius: 8px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-card .card-number {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  background-color: var(--cor-principal);
+  color: var(--cor-light, #fff);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+
+.info-card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--cor-dark);
+}
+
+.info-card p {
+  color: #555;
+  line-height: 1.6;
+}
+
+/* Responsividade dos cards */
+@media (max-width: 992px) {
+  .info-cards-container {
+    /* 1 coluna em telas menores */
+    grid-template-columns: 1fr;
+  }
+}

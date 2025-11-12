@@ -156,6 +156,29 @@ if (isset($_SESSION['solicitante_id'])) {
 
         <section id="como-funciona" class="container">
             <h2>Como Funciona a Adoção</h2>
+            <p style="text-align: center; max-width: 600px; margin: 0 auto 2rem auto;">Nosso processo é pensado para garantir o bem-estar do animal e a segurança da sua nova família.</p>
+
+            <div class="info-cards-container">
+
+                <div class="info-card">
+                    <span class="card-number">1</span>
+                    <h3>Encontre seu Pet</h3>
+                    <p>Navegue em nossa galeria, conheça os perfis e crie sua conta. Ao fazer login, você estará pronto para o próximo passo.</p>
+                </div>
+
+                <div class="info-card">
+                    <span class="card-number">2</span>
+                    <h3>Solicite a Visita</h3>
+                    <p>Na página do animal, clique em "Quero Adotar". No formulário que aparecer, você poderá **sugerir a melhor data e hora** para você vir conhecê-lo.</p>
+                </div>
+
+                <div class="info-card">
+                    <span class="card-number">3</span>
+                    <h3>Aguarde a Confirmação</h3>
+                    <p>Nossa equipe irá analisar seu perfil. Fique de olho na sua página **"Meus Pedidos"** para ver o status e a data confirmada da sua visita!</p>
+                </div>
+
+            </div>
         </section>
     </main>
 
