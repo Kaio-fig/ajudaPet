@@ -44,7 +44,48 @@ if (isset($_SESSION['solicitante_id'])) {
     $stmt_notif->execute([$id_solicitante_logado]);
     $notificacoes_count = $stmt_notif->fetchColumn();
 }
+// 5. LOGICA DO FILTRO
+$search_term = isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '';
+$filtro_sexo = isset($_GET['sexo']) ? htmlspecialchars($_GET['sexo']) : '';
+$filtro_porte = isset($_GET['porte']) ? htmlspecialchars($_GET['porte']) : '';
 
+$sql = "SELECT id, nome, sexo, porte, imagem_url, data_nascimento, personalidade 
+        FROM Animal 
+        WHERE status = 'Disponível'";
+
+
+$params = [];
+
+// Adiciona o filtro de NOME (Busca)
+if (!empty($search_term)) {
+    $sql .= " AND nome LIKE ?";
+    $params[] = "%" . $search_term . "%";
+}
+
+// Adiciona o filtro de SEXO
+if (!empty($filtro_sexo)) {
+    $sql .= " AND sexo = ?";
+    $params[] = $filtro_sexo;
+}
+
+// Adiciona o filtro de PORTE
+if (!empty($filtro_porte)) {
+    $sql .= " AND porte = ?";
+    $params[] = $filtro_porte;
+}
+
+// Finaliza a query
+$sql .= " ORDER BY data_cadastro DESC";
+
+// 4. EXECUTAR A QUERY
+try {
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute($params); // Executa com os parâmetros seguros
+    $animais = $stmt->fetchAll();
+} catch (PDOException $e) {
+    echo "Erro ao buscar animais: " . $e->getMessage();
+    $animais = [];
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -123,6 +164,36 @@ if (isset($_SESSION['solicitante_id'])) {
             <h2>Encontre seu Novo Melhor Amigo</h2>
             <p>Temos dezenas de cãezinhos carinhosos e brincalhões esperando por você.</p>
 
+            <form action="index.php" method="GET" class="filter-bar">
+
+                <div class="filter-group">
+                    <input type="text" name="search" placeholder="Busque por nome..."
+                        value="<?php echo $search_term; ?>">
+                </div>
+
+                <div class="filter-group">
+                    <select name="sexo">
+                        <option value="">Todo Sexo</option>
+                        <option value="Macho" <?php if ($filtro_sexo == 'Macho') echo 'selected'; ?>>Macho</option>
+                        <option value="Fêmea" <?php if ($filtro_sexo == 'Fêmea') echo 'selected'; ?>>Fêmea</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <select name="porte">
+                        <option value="">Todo Porte</option>
+                        <option value="Pequeno" <?php if ($filtro_porte == 'Pequeno') echo 'selected'; ?>>Pequeno</option>
+                        <option value="Médio" <?php if ($filtro_porte == 'Médio') echo 'selected'; ?>>Médio</option>
+                        <option value="Grande" <?php if ($filtro_porte == 'Grande') echo 'selected'; ?>>Grande</option>
+                    </select>
+                </div>
+
+                <div class="filter-group">
+                    <button type="submit" class="btn-submit">
+                        <i class="fas fa-search"></i> Filtrar
+                    </button>
+                </div>
+            </form>
             <div class="galeria-animais">
 
                 <?php if (count($animais) > 0): ?>
@@ -150,7 +221,9 @@ if (isset($_SESSION['solicitante_id'])) {
 
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>Nenhum animal disponível para adoção no momento. Volte em breve!</p>
+                    <p style="text-align: center; grid-column: 1 / -1; padding: 2rem;">
+                        Nenhum animal encontrado com esses filtros. Tente uma busca diferente.
+                    </p>
                 <?php endif; ?>
 
             </div>

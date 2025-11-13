@@ -172,7 +172,7 @@
 .info-card p {
     color: #555;
     line-height: 1.6;
-    
+
 }
 
 /* --- 4. Seção de Doações (Abas) --- */
@@ -293,5 +293,66 @@
 
     .hero-content h1 {
         font-size: 2.2rem;
+    }
+}
+
+/* --- Barra de Filtro --- */
+.filter-bar {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    /* 4 colunas */
+    gap: 1rem;
+    padding: 1rem;
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Ajusta os inputs e selects (reusando .form-group global) */
+.filter-group input,
+.filter-group select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* Ajusta o botão */
+.filter-bar .btn-submit {
+    padding: 0.75rem;
+    height: 100%;
+    /* Faz o botão ter a mesma altura dos inputs */
+    background-color: var(--cor-dark);
+}
+
+.filter-bar .btn-submit:hover {
+    background-color: var(--cor-principal);
+}
+
+/* Responsividade da barra de filtro */
+@media (max-width: 992px) {
+    .filter-bar {
+        grid-template-columns: 1fr 1fr;
+        /* 2 colunas */
+    }
+
+    .filter-bar .filter-group:first-child {
+        /* A busca */
+        grid-column: 1 / -1;
+        /* Ocupa a linha inteira */
+    }
+}
+
+@media (max-width: 576px) {
+    .filter-bar {
+        grid-template-columns: 1fr;
+        /* 1 coluna (empilha) */
     }
 }
