@@ -1,0 +1,65 @@
+
+/* 1. Layout Principal do Admin */
+.admin-dashboard .admin-header {
+    margin: 2rem 0;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--cor-borda, #eee);
+}
+.admin-dashboard .admin-header h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+.admin-dashboard .admin-header p {
+    font-size: 1.1rem;
+    color: #555;
+}
+
+/* 2. Abas de Navegação */
+.admin-tabs {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+    background-color: #f9f9f9;
+    padding: 0.5rem;
+    border-radius: 8px;
+}
+.admin-tabs .tab-link {
+    flex: 1;
+    text-align: center;
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    border-radius: 5px;
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+.admin-tabs .tab-link:hover {
+    background-color: #f0f0f0;
+}
+.admin-tabs .tab-link.active {
+    background-color: var(--cor-principal);
+    color: var(--cor-light, #fff);
+    border-color: var(--cor-principal);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* 3. Títulos de Seção */
+.admin-dashboard h3 {
+    font-size: 1.5rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+/* 4. Responsividade do Admin Global */
+@media (max-width: 768px) {
+    .admin-tabs {
+        flex-direction: column;
+    }
+}

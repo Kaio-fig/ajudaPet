@@ -1,22 +1,3 @@
-// assets/js/cadastro.js
-
-// --- Função de Máscara de CPF (###.###.###-##) ---
-function maskCPF(cpf) {
-    let v = cpf.value.replace(/\D/g, ''); // Remove tudo que não for dígito
-    v = v.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca ponto após 3 digitos
-    v = v.replace(/(\d{3})(\d)/, '$1.$2'); // Coloca ponto após 3 digitos
-    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2'); // Coloca hífen antes dos últimos 2 digitos
-    cpf.value = v.substring(0, 14); // Limita ao tamanho máximo
-}
-
-// --- Função de Máscara de Telefone ((##) #####-####) ---
-function maskTelefone(tel) {
-    let v = tel.value.replace(/\D/g, ''); 
-    v = v.replace(/^(\d{2})(\d)/g, '($1) $2'); 
-    v = v.replace(/(\d{5})(\d)/, '$1-$2'); 
-    tel.value = v.substring(0, 15); 
-}
-
 
 // --- Lógica de Validação e Máscara (no DOMContentLoaded) ---
 document.addEventListener('DOMContentLoaded', function() {

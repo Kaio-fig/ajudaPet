@@ -103,11 +103,11 @@ if (isset($_SESSION['solicitante_id'])) {
 }
 
 // 5. [LÓGICA DO BOTÃO REFINADA]
-$link_adotar = '#'; 
+$link_adotar = '#';
 $texto_adotar = 'Quero Adotar';
 $disabled = '';
 $classe_botao = 'btn-adotar';
-$mostrar_modal_btn = false; 
+$mostrar_modal_btn = false;
 $mostrar_aviso = false;
 $aviso_texto = '';
 $aviso_classe = 'aviso-pendente';
@@ -116,7 +116,7 @@ $aviso_classe = 'aviso-pendente';
 
 // CASO A: O animal está DISPONÍVEL (Pode ser adotado)
 if ($animal['status'] == 'Disponível') {
-    
+
     // A.1: Usuário logado tem uma solicitação PENDENTE
     if ($status_solicitacao_usuario == 'Pendente') {
         $texto_adotar = 'Solicitação Pendente';
@@ -140,9 +140,9 @@ if ($animal['status'] == 'Disponível') {
         $link_adotar = 'login.php?necessario=1&redirect=animal_detalhes.php?id=' . $animal['id'];
     }
 
-// CASO B: O animal está ADOTADO (Não pode ser adotado)
+    // CASO B: O animal está ADOTADO (Não pode ser adotado)
 } elseif ($animal['status'] == 'Adotado') {
-    
+
     $texto_adotar = 'Adotado';
     $disabled = 'disabled';
     $classe_botao = 'btn-adotar-disabled';
@@ -157,7 +157,7 @@ if ($animal['status'] == 'Disponível') {
         $aviso_classe = 'aviso-sucesso';
     }
 
-// CASO C: O animal está EM PROCESSO (Não deve acontecer, mas por segurança)
+    // CASO C: O animal está EM PROCESSO (Não deve acontecer, mas por segurança)
 } elseif ($animal['status'] == 'Em processo') {
     $texto_adotar = 'Em processo';
     $disabled = 'disabled';
@@ -181,12 +181,64 @@ elseif (isset($_SESSION['solicitante_id']) && $animal['status'] == 'Disponível'
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes de <?php echo htmlspecialchars($animal['nome']); ?> - Ajudapet</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+    <link rel="stylesheet" href="assets/css/animal_detalhes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
+    <header class="navbar">
+        <div class="container">
+            <a href="index.php" class="logo">Ajuda pet</a>
+            <nav>
+                <ul>
+                    <li><a href="index.php">Início</a></li>
+                    <li><a href="#galeria">Animais</a></li>
+                    <li><a href="#como-funciona">Instruções</a></li>
+                    <li><a href="#doacoes">Doações</a></li>
+                </ul>
+            </nav>
 
+            <div class="nav-buttons">
+                <?php
+                // VERIFICA SE É UM ADMIN LOGADO
+                if (isset($_SESSION['admin_id'])):
+                ?>
+                    <a href="admin/index.php" class="btn-profile">Painel Admin</a>
+                    <a href="backend/logout.php" class="btn-login">Sair</a>
+
+                <?php
+                // VERIFICA SE É UM SOLICITANTE LOGADO
+                elseif (isset($_SESSION['solicitante_id'])):
+                    // Pega o nome do solicitante (o "Marcos Oli" do exemplo)
+                    $nome_solicitante = $_SESSION['solicitante_nome'];
+                ?>
+                    <div class="profile-dropdown">
+                        <button class="btn-profile">
+                            <img src="assets/images/icon-profile.png" alt="Icone Perfil" class="profile-icon">
+                            <?php echo htmlspecialchars($nome_solicitante); ?>
+                            &#9662; </button>
+                        <div class="dropdown-content">
+                            <a href="perfil.php">Meus Dados</a>
+                            <a href="meus_pedidos.php" class="link-notificacao">
+                                Meus Pedidos
+                                <?php if ($notificacoes_count > 0): ?>
+                                    <span class="notification-badge"><?php echo $notificacoes_count; ?></span>
+                                <?php endif; ?>
+                            </a>
+                            <a href="backend/logout.php">Sair</a>
+                        </div>
+                    </div>
+
+                <?php
+                else:
+                ?>
+                    <a href="login.php" class="btn-login">Login/Cadastro</a>
+
+                <?php endif; ?>
+            </div>
+        </div>
+    </header>
 
     <main class="container">
 
@@ -297,10 +349,6 @@ elseif (isset($_SESSION['solicitante_id']) && $animal['status'] == 'Disponível'
             </div>
         </div>
     </main>
-
-    <footer>
-    </footer>
-
     <script src="assets/js/funcoes.js"></script>
     <script src="assets/js/main.js"></script>
 </body>

@@ -1,0 +1,211 @@
+/* assets/css/animal_detalhes.css */
+/* Estilos específicos para a página de detalhes do animal */
+
+.voltar-link {
+    display: inline-block;
+    margin: 2rem 0;
+    color: var(--cor-dark);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.voltar-link:hover {
+    color: var(--cor-principal);
+}
+
+.voltar-link i {
+    margin-right: 0.5rem;
+}
+
+.animal-detalhe-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Duas colunas */
+    gap: 2.5rem;
+    background: var(--cor-light);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.detalhe-imagem img {
+    width: 100%;
+    height: 500px;
+    /* Altura fixa para a imagem */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.detalhe-info h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+    color: var(--cor-dark);
+}
+
+.detalhe-info .localizacao {
+    color: #666;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.detalhe-info .localizacao i {
+    color: var(--cor-principal);
+    margin-right: 0.25rem;
+}
+
+/* --- Grid de Infos Rápidas --- */
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-top: 1px solid var(--cor-borda, #eee);
+    border-bottom: 1px solid var(--cor-borda, #eee);
+    padding: 1.5rem 0;
+}
+
+.info-grid>div {
+    /* Estilo para os 4 blocos (Porte, Sexo, Idade, Status) */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-grid>div i {
+    /* O ícone */
+    font-size: 1.5rem;
+    color: var(--cor-principal);
+}
+
+.info-grid>div span {
+    /* O label "Porte", "Sexo"... */
+    display: block;
+    color: #555;
+    font-size: 0.9rem;
+}
+
+.info-grid>div strong {
+    /* O valor "Pequeno", "Macho"... */
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+/* Cores dos status */
+.status-disponível {
+    color: var(--cor-sucesso-text, #155724);
+}
+
+.status-adotado {
+    color: #cf1322;
+}
+
+.status-em-processo {
+    color: var(--cor-aviso-text, #d4b106);
+}
+
+
+.detalhe-info h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+}
+
+.detalhe-info p {
+    color: #444;
+    line-height: 1.7;
+}
+
+/* --- Caixa de Cuidados --- */
+.cuidados-box {
+    background: var(--cor-sucesso-bg, #f6ffed);
+    border: 1px solid var(--cor-sucesso-border, #b7eb8f);
+    color: var(--cor-sucesso-text, #389e0d);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 2rem 0;
+}
+
+.cuidados-box strong {
+    font-size: 1.1rem;
+    font-weight: 700;
+}
+
+.cuidados-box ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* 2 colunas */
+    gap: 0.5rem;
+    color: var(--cor-texto);
+    /* Texto normal */
+}
+
+/* --- Botões de Adoção --- */
+.btn-adotar,
+.btn-adotar-disabled,
+.btn-adotar-aprovada {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-adotar {
+    background-color: var(--cor-principal);
+    color: var(--cor-light);
+}
+
+.btn-adotar:hover {
+    background-color: var(--cor-principal-hover);
+    transform: translateY(-2px);
+}
+
+.btn-adotar-disabled {
+    background-color: #ccc;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.btn-adotar-aprovada {
+    background-color: var(--cor-sucesso-text, #28a745);
+    color: white;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* --- Responsividade --- */
+@media (max-width: 992px) {
+    .animal-detalhe-container {
+        grid-template-columns: 1fr;
+        /* Coluna única */
+    }
+
+    .detalhe-imagem img {
+        height: 350px;
+        /* Altura menor no mobile */
+    }
+
+    .info-grid,
+    .cuidados-box ul {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 576px) {
+    .info-grid {
+        grid-template-columns: 1fr;
+        /* Coluna única no mobile */
+    }
+}

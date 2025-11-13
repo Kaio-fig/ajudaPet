@@ -55,19 +55,25 @@ if (isset($_SESSION['solicitante_id'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meus Pedidos - Ajudapet</title>
-    <link rel="stylesheet" href="assets/css/estilo.css">
+
+    <link rel="stylesheet" href="assets/css/global.css">
+
+    <link rel="stylesheet" href="assets/css/meus_pedidos.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
 
     <header class="navbar">
         <div class="container">
-            <a href="index.php" class="logo">Meus pedidos</a>
+            <a href="index.php" class="logo">Ajuda pet</a>
             <nav>
                 <ul>
                     <li><a href="index.php">Início</a></li>
                     <li><a href="#galeria">Animais</a></li>
                     <li><a href="#como-funciona">Instruções</a></li>
+                    <li><a href="#doacoes">Doações</a></li>
                 </ul>
             </nav>
 
@@ -112,7 +118,7 @@ if (isset($_SESSION['solicitante_id'])) {
         </div>
     </header>
 
-    <main class="container" style="padding-top: 2rem;">
+    <main class="container pedidos-page-container">
         <h1>Meus Pedidos de Adoção</h1>
 
         <div class="lista-pedidos">
@@ -153,7 +159,7 @@ if (isset($_SESSION['solicitante_id'])) {
                         </div>
 
                         <div class="pedido-link">
-                            <a href="animal_detalhes.php?id=<?php echo $pedido['animal_id']; ?>" class="btn-detalhes">Ver Animal</a>
+                            <a href="animal_detalhes.php?id=<?php echo $pedido['animal_id']; ?>" class="btn-submit" style="background-color: var(--cor-dark);">Ver Animal</a>
                         </div>
                     </div>
 
@@ -162,9 +168,6 @@ if (isset($_SESSION['solicitante_id'])) {
         </div>
 
     </main>
-
-    <footer>
-    </footer>
 
     <script src="assets/js/funcoes.js"></script>
     <script src="assets/js/main.js"></script>
