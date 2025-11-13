@@ -173,6 +173,18 @@ elseif (isset($_SESSION['admin_id'])) {
 elseif (isset($_SESSION['solicitante_id']) && $animal['status'] == 'Disponível') {
     $mostrar_modal_btn = true;
 }
+
+$notificacoes_count = 0; // Inicia a contagem
+if (isset($_SESSION['solicitante_id'])) {
+    $id_solicitante_logado = $_SESSION['solicitante_id'];
+    $sql_notif = "SELECT COUNT(*) FROM SolicitacaoAdoção 
+                  WHERE id_solicitante = ? 
+                  AND visto_pelo_solicitante = 0 
+                  AND (status = 'Aprovada' OR status = 'Rejeitada')";
+    $stmt_notif = $pdo->prepare($sql_notif);
+    $stmt_notif->execute([$id_solicitante_logado]);
+    $notificacoes_count = $stmt_notif->fetchColumn();
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
