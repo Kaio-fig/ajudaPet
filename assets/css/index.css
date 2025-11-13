@@ -258,13 +258,69 @@
     border-top: 1px dashed var(--cor-borda, #eee);
 }
 
-.pix-info input[type="text"] {
-    font-size: 1.1rem;
+.pix-info strong,
+.paypal-info strong {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* [NOVO] Grid do PIX */
+.pix-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Duas colunas */
+    align-items: center;
+    gap: 2rem;
+}
+
+.pix-coluna p {
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.pix-coluna input[type="text"] {
+    font-size: 1rem;
     font-weight: 500;
-    padding: 0.5rem;
+    padding: 0.75rem;
     border: 1px solid #ccc;
     border-radius: 5px;
-    width: 300px;
+    width: 100%;
+}
+
+/* [NOVO] Estilos do QR Code */
+.qr-code-container {
+    text-align: center;
+}
+
+.qr-code-container img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    margin: 0 auto 0.5rem auto;
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    padding: 10px;
+    /* Borda branca interna */
+    background: white;
+}
+
+.qr-code-container .scan-btn {
+    width: 100%;
+    max-width: 200px;
+    background: var(--cor-dark);
+}
+
+.qr-code-container .scan-btn:hover {
+    background: var(--cor-principal);
+}
+
+.qr-code-container small {
+    font-size: 0.8rem;
+    color: #999;
+    margin-top: 0.5rem;
+    display: block;
 }
 
 /* --- 5. Responsividade Específica do Index --- */
@@ -277,6 +333,18 @@
 @media (min-width: 768px) {
     .galeria-animais {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .pix-grid {
+        grid-template-columns: 1fr;
+        /* Empilha */
+        gap: 2.5rem;
+        /* Aumenta o gap vertical */
+    }
+
+    .qr-code-container {
+        /* Coloca o QR code antes da chave no mobile */
+        order: -1;
     }
 }
 

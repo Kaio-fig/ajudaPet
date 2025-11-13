@@ -277,17 +277,16 @@ try {
 
                 <div class="pix-info">
                     <strong>Doe via PIX</strong>
-                    <p>Use nossa chave (E-mail):</p>
-                    <input type="text" value="financeiro@ajudapet.com" readonly onclick="this.select();">
-                    <small>Ou aponte sua câmera para o QR Code ao lado.</small>
-                </div>
-                <div class="paypal-info">
-                    <strong>Doe com PayPal ou Cartão</strong>
-                    <p>Clique no botão abaixo para ser redirecionado a um ambiente de pagamento seguro.</p>
-                    <br>
-                    <a href="https://paypal.me/suaong" target="_blank" class="btn-submit" style="width: auto;">
-                        Doar com PayPal
-                    </a>
+                    <div class="pix-grid">
+                        <div class="pix-coluna">
+                            <p>Use nossa chave (E-mail):</p>
+                            <input type="text" value="ajudapet@hotmail.com" readonly onclick="this.select();">
+                        </div>
+                        <div class="pix-coluna qr-code-container">
+                            <p>Ou aponte sua câmera:</p>
+                            <img src="assets/images/meu-qrcode-pix.png" alt="QR Code PIX para doação">
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -296,7 +295,7 @@ try {
                 <p>Ração, remédios, coleiras e vacinas são sempre bem-vindos! Por favor, descreva sua doação e entraremos em contato para combinar a retirada.</p>
 
                 <form action="backend/processa_doacao_fisica.php" method="POST">
-                    <div class="form-grid">
+                    <div class="form-grid-2-cols">
                         <div class="form-group">
                             <label for="nome_doador">Seu Nome:</label>
                             <input type="text" id="nome_doador" name="nome_doador" required>
@@ -306,7 +305,7 @@ try {
                             <input type="email" id="email" name="email" required>
                         </div>
                     </div>
-                    <div class="form-grid">
+                    <div class="form-grid-2-cols">
                         <div class="form-group">
                             <label for="telefone">Telefone (Opcional):</label>
                             <input type="tel" id="telefone" name="telefone">

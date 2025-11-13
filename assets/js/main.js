@@ -85,14 +85,15 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 // --- Lógica das Abas de Doação (no index.php) ---
-document.addEventListener('DOMContentLoaded', function() {
-    
+document.addEventListener('DOMContentLoaded', function () {
+
+    // Lógica das abas
     const tabLinks = document.querySelectorAll('.doacao-tab-link');
     const tabContents = document.querySelectorAll('.doacao-content');
 
     // Verifica se os elementos das abas existem nesta página
     if (tabLinks.length > 0) {
-        
+
         tabLinks.forEach(link => {
             link.addEventListener('click', () => {
                 const tabId = link.dataset.tab; // ex: "tab-monetaria"
