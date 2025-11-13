@@ -1,0 +1,252 @@
+/* assets/css/admin_animais.css */
+/* Estilos para "Gerenciar Animais" (Listar, Cadastrar, Editar) */
+
+/* ============================================== */
+/* 1. Estilos da Listagem (consultar_animal.php) */
+/* ============================================== */
+
+.btn-add-new {
+    background-color: var(--cor-principal);
+    color: var(--cor-light, #fff);
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+    margin-bottom: 1rem;
+}
+
+.btn-add-new:hover {
+    background-color: var(--cor-principal-hover);
+}
+
+.btn-add-new i {
+    margin-right: 0.5rem;
+}
+
+/* O container da Tabela */
+.admin-table-container {
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    overflow-x: auto;
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda, #eee);
+    vertical-align: middle;
+}
+
+.admin-table th {
+    background: #f9f9f9;
+    font-weight: 700;
+}
+
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+
+.admin-table tr:hover {
+    background: #f5f5f5;
+}
+
+/* Foto do animal na lista */
+.animal-list-photo {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+}
+
+/* Status (Disponível, Adotado...) */
+.admin-table .status-disponível {
+    color: var(--cor-sucesso-text, #389e0d);
+    font-weight: 700;
+}
+
+.admin-table .status-adotado {
+    color: #cf1322;
+    font-weight: 700;
+}
+
+.admin-table .status-em-processo {
+    color: var(--cor-aviso-text, #d4b106);
+    font-weight: 700;
+}
+
+.admin-table .status-indisponível {
+    color: #555;
+    font-weight: 700;
+}
+
+/* Botões de Ação (Editar, Excluir) */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.action-btn.view {
+    background-color: #096dd9;
+}
+
+/* Azul (Editar) */
+.action-btn.reject {
+    background-color: #cf1322;
+}
+
+/* Vermelho (Excluir) */
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+
+/* ============================================== */
+/* 2. Estilos dos Formulários (cadastrar/editar) */
+/* ============================================== */
+
+.form-card {
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.form-card+.form-card {
+    margin-top: 2rem;
+}
+
+.form-grid-2-cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.current-photo {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid var(--cor-borda, #eee);
+}
+
+/* 3. Seção da Carteira de Vacinação (editar_animal.php) */
+.vacina-section h2 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--cor-principal);
+    display: inline-block;
+}
+
+.vacina-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 0;
+}
+
+/* Tags de status da tabela de vacinas */
+.status-tag {
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: inline-block;
+}
+
+.status-tag.atrasada {
+    color: #c0392b;
+    background-color: #fadbd8;
+}
+
+.status-tag.vence-hoje {
+    color: #d35400;
+    background-color: #fdebd0;
+}
+
+.status-tag.em-dia {
+    color: #27ae60;
+    background-color: #d5f5e3;
+}
+
+.status-tag.padrao {
+    color: #777;
+    background-color: #f0f0f0;
+}
+
+/* 4. Responsividade */
+@media (max-width: 768px) {
+    .form-grid-2-cols {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+}
+/* assets/css/admin_animais.css (ADICIONAR NO FINAL) */
+
+/* =================================================== */
+/* 5. Estilos da Página de Exclusão (deletar_animal.php) */
+/* =================================================== */
+
+.delete-confirmation-box {
+    background-color: #fee2e2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    padding: 2rem;
+    max-width: 700px;
+    margin: 0 auto; /* Centraliza a caixa */
+}
+.delete-confirmation-box h2 {
+    color: #b91c1c; /* Vermelho escuro */
+    margin-top: 0;
+    font-size: 1.75rem;
+}
+.delete-confirmation-box h2 i {
+    margin-right: 0.5rem;
+}
+.delete-confirmation-box p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+.delete-confirmation-box h3 {
+    font-size: 1.5rem;
+    margin-top: 10px;
+    color: #333;
+}
+.delete-confirmation-box .delete-actions {
+    margin-top: 20px;
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end; /* Alinha botões à direita */
+}
+
+/* Botão de perigo */
+.btn-danger {
+    background-color: #cf1322; /* Vermelho */
+    color: white;
+}
+.btn-danger:hover {
+    background-color: #a0101a;
+}

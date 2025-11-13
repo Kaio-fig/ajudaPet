@@ -1,0 +1,157 @@
+/* assets/css/admin_solicitacoes.css */
+/* Estilos exclusivos da página "Avaliar Solicitações" */
+
+/* 1. Cards de Estatística (Layout de 4 colunas) */
+.stat-grid {
+    display: grid;
+    /* 4 colunas, como no seu mockup anterior */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 1.5rem;
+}
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem;
+    border: 1px solid #e8e8e8;
+    border-radius: 8px;
+    background: #fff;
+    border-left-width: 5px;
+}
+.stat-card .icon {
+    font-size: 2.5rem;
+}
+.stat-card .stat-info h2 {
+    font-size: 2.25rem;
+    margin: 0;
+}
+.stat-card .stat-info p {
+    font-size: 1rem;
+    color: #555;
+    margin: 0;
+}
+
+/* 2. Tabela de Solicitações */
+.admin-table-container {
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    overflow-x: auto; /* Para rolar a tabela em telas pequenas */
+    margin-top: 2rem;
+}
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda, #eee);
+}
+.admin-table th {
+    background: #f9f9f9;
+    font-weight: 700;
+}
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+.admin-table tr:hover {
+    background: #f5f5f5;
+}
+
+/* Status na tabela (Pendentes, Aprovados, etc.) */
+.admin-table .status-pendente {
+    color: var(--cor-aviso-text, #d4b106);
+    font-weight: 700;
+}
+.admin-table .status-aprovada {
+    color: var(--cor-sucesso-text, #389e0d);
+    font-weight: 700;
+}
+.admin-table .status-rejeitada {
+    color: #cf1322;
+    font-weight: 700;
+}
+
+/* 3. Botões de Ação da Tabela */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+.action-btn {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: white;
+}
+.action-btn.view { background-color: #096dd9; }
+.action-btn.approve { background-color: #389e0d; }
+.action-btn.reject { background-color: #cf1322; }
+.action-btn:hover {
+    opacity: 0.8;
+}
+
+/* 4. Estilos dos Modais (View, Approve, Reject) */
+.modal-lg {
+    max-width: 800px;
+}
+.detalhes-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.detalhes-grid > div {
+    margin-bottom: 0.5rem;
+}
+.detalhes-grid strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #555;
+    font-weight: 700;
+}
+.detalhes-grid span {
+    display: block;
+    font-size: 1rem;
+}
+.detalhes-bloco {
+    margin-top: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #eee;
+}
+.detalhes-bloco strong {
+    font-weight: 700;
+}
+.detalhes-bloco p {
+    margin: 0.5rem 0 0 0;
+    padding: 0.75rem;
+    background: #f5f5f5;
+    border-radius: 5px;
+}
+.detalhes-bloco ul {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 0.5rem;
+    padding: 0.75rem;
+    background: #e6f7ff;
+    border: 1px solid #91d5ff;
+    border-radius: 5px;
+}
+
+/* 5. Responsividade Específica */
+@media (max-width: 992px) {
+    .stat-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .stat-grid {
+        grid-template-columns: 1fr;
+    }
+}

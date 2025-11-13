@@ -1,7 +1,7 @@
 <?php
 // 1. INICIA A SESSÃO E SEGURANÇA
 session_start();
-if ( !isset($_SESSION['admin_id']) || $_SESSION['nivel_acesso'] != 0 ) {
+if (!isset($_SESSION['admin_id']) || $_SESSION['nivel_acesso'] != 0) {
     header("Location: ../../login.php?erro=acesso_negado");
     exit();
 }
@@ -15,20 +15,17 @@ $animal_id = $_GET['id'];
 // 3. Inclui a conexão
 require_once '../../config/conexao.php';
 
-// 4. Buscar os dados do animal (só precisamos do nome)
+// 4. Buscar os dados do animal
 try {
-    $sql = "SELECT nome FROM animal WHERE id = ?";
+    $sql = "SELECT nome FROM Animal WHERE id = ?";
     $stmt = $pdo->prepare($sql);
     $stmt->execute([$animal_id]);
     $animal = $stmt->fetch();
 
-    // Verifica se o animal foi encontrado
     if (!$animal) {
-        // Redireciona de volta para a lista com uma flag de erro
         header("Location: consultar_animal.php?erro=nao_encontrado");
         exit();
     }
-
 } catch (PDOException $e) {
     die("Erro ao buscar dados: " . $e->getMessage());
 }
@@ -39,53 +36,75 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar Exclusão - Ajudapet</title> 
-    <link rel="stylesheet" href="../../assets/css/estilo.css"> 
+    
+    <link rel="stylesheet" href="../../assets/css/global.css">
+    <link rel="stylesheet" href="../../assets/css/admin_global.css">
+    <link rel="stylesheet" href="../../assets/css/admin_animais.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
 
     <header class="navbar">
         <div class="container">
-            <a href="../index.php" class="logo">Ajudapet (Admin)</a>
-            <nav>
-                <ul>
-                    <li><a href="../index.php">Início</a></li>
-                    <li><a href="consultar_animal.php">Consultar Animais</a></li>
-                    <li><a href="../avaliar_solicitacoes.php">Ver Solicitações</a></li>
-                </ul>
-            </nav>
-            <a href="../../backend/logout.php" class="btn-login">Sair</a>
+            <a href="../index.php" class="logo" style="color: var(--cor-principal);">Ajudapet (Admin)</a>
+            <a href="../../backend/logout.php" class="btn-login" style="background-color: var(--cor-principal);">Sair</a>
         </div>
     </header>
 
-    <main class="container" style="padding-top: 2rem;">
-        
-        <h2 style="color: #b91c1c;">Confirmar Exclusão</h2>
-        
-        <div style="background-color: #fee2e2; border: 1px solid #fecaca; padding: 20px; border-radius: 5px; margin-top: 1rem;">
-            <p style="font-size: 1.1rem;">
-                Você tem certeza que deseja excluir permanentemente o registro de:
-            </p>
-            
-            <h3 style="font-size: 1.5rem; margin-top: 10px;"><?php echo htmlspecialchars($animal['nome']); ?> (ID: <?php echo $animal_id; ?>)</h3>
-            
-            <p style="margin-top: 15px; font-weight: bold;">
-                Esta ação não pode ser desfeita. Todos os dados e a foto do animal serão apagados do servidor.
-            </p>
+    <main class="container admin-dashboard">
 
-            <form action="../../backend/animais_backend/processa_exclusao_animais.php" method="POST" style="margin-top: 20px;">
-                
-                <input type="hidden" name="id" value="<?php echo $animal_id; ?>">
-                
-                <a href="consultar_animal.php" class="btn-editar" style="background-color: #eee; color: #555;">
-                    Cancelar
-                </a>
-                
-                <button type="submit" class="btn-excluir" style="font-family: 'Montserrat', sans-serif; font-size: 0.9rem;">
-                    Sim, excluir permanentemente
-                </button>
-            </form>
+        <div class="admin-header">
+            <h1>Painel Administrativo</h1>
         </div>
+        <nav class="admin-tabs">
+            <a href="../index.php" class="tab-link">
+                <i class="fas fa-chart-bar"></i> DashBoard
+            </a>
+            <a href="../avaliar_solicitacoes.php" class="tab-link">
+                <i class="fas fa-tasks"></i> Solicitações 
+            </a>
+            <a href="consultar_animal.php" class="tab-link active">
+                <i class="fas fa-paw"></i> Gerenciar Animais
+            </a>
+            <a href="../relatorio.php" class="tab-link">
+                <i class="fas fa-file-alt"></i> Solicitantes
+            </a>
+            <a href="../ver_doacoes.php" class="tab-link">
+                <i class="fas fa-box-open"></i> Doações Físicas
+            </a>
+        </nav>
 
+        <div id="gerenciar-animais-delete" class="tab-content active" style="display:block;">
+            
+            <div class="delete-confirmation-box">
+                <h2><i class="fas fa-exclamation-triangle"></i> Confirmar Exclusão</h2>
+                
+                <p>
+                    Você tem certeza que deseja excluir permanentemente o registro de:
+                </p>
+                
+                <h3><?php echo htmlspecialchars($animal['nome']); ?> (ID: <?php echo $animal_id; ?>)</h3>
+                
+                <p>
+                    <strong>Esta ação não pode ser desfeita.</strong> Todos os dados associados (vacinas, solicitações) e a foto do animal serão apagados do servidor.
+                </p>
+
+                <form action="../../backend/animais_backend/processa_exclusao_animal.php" method="POST" class="delete-actions">
+                    
+                    <input type="hidden" name="id" value="<?php echo $animal_id; ?>">
+                    
+                    <a href="consultar_animal.php" class="btn-cancelar">
+                        Cancelar
+                    </a>
+                    
+                    <button type="submit" class="btn-submit btn-danger">
+                        Sim, excluir permanentemente
+                    </button>
+                </form>
+            </div>
+            
+        </div>
     </main>
 </body>
 </html>

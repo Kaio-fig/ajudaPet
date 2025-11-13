@@ -1,7 +1,7 @@
 <?php
 // 1. INICIA A SESSÃO E VERIFICA O ACESSO
 session_start();
-if ( !isset($_SESSION['admin_id']) || $_SESSION['nivel_acesso'] != 0 ) {
+if (!isset($_SESSION['admin_id']) || $_SESSION['nivel_acesso'] != 0) {
     header("Location: ../login.php?erro=acesso_negado");
     exit();
 }
@@ -36,13 +36,13 @@ try {
     $total_aprovadas = $counts_solicitacoes['aprovadas'] ?? 0;
     // O mockup_4 tem "Finalizados", mas o DB tem "Aprovada" e "Rejeitada" (mockup_5)
     $total_rejeitadas = $counts_solicitacoes['rejeitadas'] ?? 0;
-
 } catch (PDOException $e) {
     die("Erro ao buscar dados do dashboard: " . $e->getMessage());
 }
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -52,13 +52,14 @@ try {
     <link rel="stylesheet" href="../assets/css/admin_index.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
 
     <header class="navbar">
         <div class="container">
             <a href="index.php" class="logo" style="color: var(--cor-principal);">Ajudapet (Admin)</a>
             <nav>
-                </nav>
+            </nav>
             <a href="../backend/logout.php" class="btn-login" style="background-color: var(--cor-principal);">Sair</a>
         </div>
     </header>
@@ -75,7 +76,7 @@ try {
                 <i class="fas fa-chart-bar"></i> DashBoard
             </a>
             <a href="avaliar_solicitacoes.php" class="tab-link">
-                <i class="fas fa-tasks"></i> Solicitações 
+                <i class="fas fa-tasks"></i> Solicitações
                 <?php if ($total_pendentes > 0): ?>
                     <span class="notification-badge"><?php echo $total_pendentes; ?></span>
                 <?php endif; ?>
@@ -84,12 +85,15 @@ try {
                 <i class="fas fa-paw"></i> Gerenciar Animais
             </a>
             <a href="relatorio.php" class="tab-link">
-                <i class="fas fa-file-alt"></i> Gerenciar Solicitantes
+                <i class="fas fa-file-alt"></i> Solicitantes
+            </a>
+            <a href="../ver_doacoes.php" class="tab-link">
+                <i class="fas fa-box-open"></i> Doações Físicas
             </a>
         </nav>
 
         <div id="dashboard" class="tab-content active">
-            
+
             <div class="stat-grid">
                 <div class="stat-card" style="background: #e6f7ff; border-color: #91d5ff;">
                     <i class="fas fa-paw icon" style="color: #096dd9;"></i>
@@ -99,7 +103,8 @@ try {
                     </div>
                 </div>
                 <div class="stat-card" style="background: #f6ffed; border-color: #b7eb8f;">
-                    <i class="fas fa-shield-dog icon" style="color: #389e0d;"></i> <div class="stat-info">
+                    <i class="fas fa-shield-dog icon" style="color: #389e0d;"></i>
+                    <div class="stat-info">
                         <h2><?php echo $total_disponiveis; ?></h2>
                         <p>Disponíveis</p>
                     </div>
@@ -137,17 +142,9 @@ try {
                     </div>
                 </div>
             </div>
-
-            <h3>Ações Rápidas</h3>
-            <div class="quick-actions">
-                <a href="./animais_admin/cadastrar_animal.php" class="action-button">
-                    <i class="fas fa-plus-circle"></i> Adicionar Animal
-                </a>
-                <a href="ver_doacoes.php" class="action-button">
-                    <i class="fas fa-file-alt"></i> Ver Doações
-                </a>
-            </div>
-
-        </div> </main>
+        </div>
+        </div>
+    </main>
 </body>
+
 </html>

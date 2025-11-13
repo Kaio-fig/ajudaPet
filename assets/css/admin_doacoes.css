@@ -1,0 +1,76 @@
+/* assets/css/admin_doacoes.css */
+/* Estilos exclusivos da página "Ver Doações" */
+
+/* 1. O container da Tabela */
+.admin-table-container {
+    background: var(--cor-light, #fff);
+    border: 1px solid var(--cor-borda, #eee);
+    border-radius: 8px;
+    overflow-x: auto; 
+    margin-top: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+/* 2. A Tabela */
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+.admin-table th,
+.admin-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--cor-borda, #eee);
+    vertical-align: middle;
+}
+.admin-table th {
+    background: #f9f9f9;
+    font-weight: 700;
+}
+.admin-table tr:last-child td {
+    border-bottom: none;
+}
+.admin-table tr:hover {
+    background: #f5f5f5;
+}
+
+/* 3. Status da Doação */
+.admin-table .status-pendente {
+    color: var(--cor-aviso-text, #d4b106);
+    font-weight: 700;
+}
+.admin-table .status-contatado {
+    color: #096dd9; /* Azul */
+    font-weight: 700;
+}
+.admin-table .status-concluído {
+    color: #555; /* Cinza */
+    font-weight: 700;
+}
+
+/* 4. Botões de Ação (Marcar como) */
+.action-buttons {
+    display: flex;
+    flex-direction: column; /* Empilha os botões */
+    gap: 0.5rem;
+}
+.action-btn {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.9rem;
+    color: white;
+    text-align: center;
+}
+.action-btn.view { 
+    background-color: #096dd9; /* Azul (Contatado) */
+}
+.action-btn.approve { 
+    background-color: #389e0d; /* Verde (Concluído) */
+}
+.action-btn:hover {
+    opacity: 0.8;
+}

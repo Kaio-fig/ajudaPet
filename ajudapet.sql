@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 12-Nov-2025 às 14:36
+-- Tempo de geração: 13-Nov-2025 às 13:36
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -78,9 +78,26 @@ CREATE TABLE `animal` (
 --
 
 INSERT INTO `animal` (`id`, `id_admin_cadastro`, `nome`, `sexo`, `raca`, `porte`, `data_nascimento`, `peso`, `cor_pelagem`, `personalidade`, `imagem_url`, `castrado`, `microchip`, `status`, `descricao_historia`, `observacoes`, `data_cadastro`, `data_adocao`, `id_adotante`) VALUES
-(1, 1, 'Totó', 'Macho', 'Vira-lata', 'Médio', '2023-07-04', 15.30, 'Preto e branco', 'Dócil', 'animal_691324b0232f9.jpg', 0, '', 'Adotado', 'Extremamente amável e carinhoso, já deita de barriga para cima assim que é chamado', '', '2025-11-11 11:57:36', NULL, NULL),
-(2, 1, 'Thor', 'Macho', 'SRD', 'Grande', '2016-02-02', 40.00, 'Preto', 'Dócil', 'animal_691360b5293ea.jfif', 1, '', 'Adotado', 'Thor foi vitima de uma doença grave de pele, sofreu ataques de outros cachorros que o deixaram com sequelas', 'artrose, artrite, obeso', '2025-11-11 16:13:41', '2025-11-12 10:15:03', 1),
+(1, 1, 'Totó', 'Macho', 'Vira-lata', 'Médio', '2023-07-04', 15.30, 'Preto e branco', 'Dócil', 'animal_691324b0232f9.jpg', 0, '', 'Disponível', 'Extremamente amável e carinhoso, já deita de barriga para cima assim que é chamado', '', '2025-11-11 11:57:36', NULL, NULL),
+(2, 1, 'Thor', 'Macho', 'SRD', 'Grande', '2016-02-02', 40.00, 'Preto', 'Dócil', 'animal_691360b5293ea.jfif', 1, '', 'Disponível', 'Thor foi vitima de uma doença grave de pele, sofreu ataques de outros cachorros que o deixaram com sequelas', 'artrose, artrite, obeso', '2025-11-11 16:13:41', '2025-11-12 10:15:03', 1),
 (3, 1, 'Mel', 'Fêmea', 'SRD', 'Pequeno', '2023-06-12', 7.00, 'preto', 'Chata', 'animal_69147e8fdc7d5.jfif', 1, '', 'Disponível', 'Mel passou por uma serie de dificuldades blbablablablabla', 'Saudavel', '2025-11-12 12:33:19', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `doacoesfisicas`
+--
+
+CREATE TABLE `doacoesfisicas` (
+  `id` int(11) NOT NULL,
+  `nome_doador` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `telefone` varchar(20) DEFAULT NULL,
+  `tipo_item` enum('Remédio','Ração','Vacina','Acessório','Outro') NOT NULL,
+  `descricao` text NOT NULL,
+  `data_oferta` timestamp NOT NULL DEFAULT current_timestamp(),
+  `status` enum('Pendente','Contatado','Concluído') DEFAULT 'Pendente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -144,7 +161,7 @@ CREATE TABLE `solicitante` (
 --
 
 INSERT INTO `solicitante` (`id`, `nome`, `cpf`, `email`, `senha`, `telefone`, `endereco_completo`, `cidade`, `estado`, `cep`, `tipo_moradia`, `possui_quintal`, `ja_teve_pets`, `descricao_pets_anteriores`, `experiencia_animais`, `disponibilidade_tempo`, `motivacao_adotar`, `data_cadastro`, `ativo`) VALUES
-(1, 'teste da silva', '123456789010', 'teste@email.com', '$2y$10$K6jaR0gKmX2y3.yBghfUIedmKAzHauaEBiiIYOrmK4n1XCekPex6W', '99999999999', 'rua dos bobos nº0', 'ituvecuty', 'sp', NULL, 'casa', NULL, 1, NULL, NULL, NULL, NULL, '2025-11-10 12:19:15', 1);
+(1, 'teste da silva', '123456789010', 'teste@email.com', '$2y$10$K6jaR0gKmX2y3.yBghfUIedmKAzHauaEBiiIYOrmK4n1XCekPex6W', '99999999999', 'rua dos bobos nº0', 'ituvecity', 'sp', '', 'casa', 'Não', 1, '', '', '', '', '2025-11-10 12:19:15', 1);
 
 -- --------------------------------------------------------
 
@@ -173,15 +190,6 @@ ALTER TABLE `administrador`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
--- Adiciona as colunas que faltam da tela 'Meus Dados'
-ALTER TABLE Solicitante
-    ADD COLUMN cep VARCHAR(10) NULL AFTER estado,
-    ADD COLUMN possui_quintal ENUM('Sim', 'Não') NULL AFTER tipo_moradia,
-    ADD COLUMN descricao_pets_anteriores TEXT NULL AFTER ja_teve_pets,
-    ADD COLUMN experiencia_animais VARCHAR(255) NULL AFTER descricao_pets_anteriores,
-    ADD COLUMN disponibilidade_tempo VARCHAR(255) NULL AFTER experiencia_animais,
-    ADD COLUMN motivacao_adotar TEXT NULL AFTER disponibilidade_tempo;
-
 --
 -- Índices para tabela `animal`
 --
@@ -189,6 +197,12 @@ ALTER TABLE `animal`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_animal_admin` (`id_admin_cadastro`),
   ADD KEY `fk_animal_solicitante` (`id_adotante`);
+
+--
+-- Índices para tabela `doacoesfisicas`
+--
+ALTER TABLE `doacoesfisicas`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Índices para tabela `solicitacaoadoção`
@@ -229,6 +243,12 @@ ALTER TABLE `administrador`
 --
 ALTER TABLE `animal`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT de tabela `doacoesfisicas`
+--
+ALTER TABLE `doacoesfisicas`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de tabela `solicitacaoadoção`

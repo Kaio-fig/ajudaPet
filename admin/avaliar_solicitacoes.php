@@ -60,7 +60,9 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gerenciar Solicitações - Ajudapet</title>
-    <link rel="stylesheet" href="../assets/css/estilo.css">
+    <link rel="stylesheet" href="../assets/css/global.css">
+    <link rel="stylesheet" href="../assets/css/admin_global.css">
+    <link rel="stylesheet" href="../assets/css/admin_solicitacoes.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -95,7 +97,10 @@ try {
                 <i class="fas fa-paw"></i> Gerenciar Animais
             </a>
             <a href="relatorio.php" class="tab-link">
-                <i class="fas fa-file-alt"></i> Gerenciar solicitantes
+                <i class="fas fa-file-alt"></i> Solicitantes
+            </a>
+            <a href="../ver_doacoes.php" class="tab-link">
+                <i class="fas fa-box-open"></i> Doações Físicas
             </a>
         </nav>
 
