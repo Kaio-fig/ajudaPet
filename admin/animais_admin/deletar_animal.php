@@ -90,7 +90,7 @@ try {
                     <strong>Esta ação não pode ser desfeita.</strong> Todos os dados associados (vacinas, solicitações) e a foto do animal serão apagados do servidor.
                 </p>
 
-                <form action="../../backend/animais_backend/processa_exclusao_animal.php" method="POST" class="delete-actions">
+                <form action="../../backend/animais_backend/processa_exclusao_animais.php" method="POST" class="delete-actions">
                     
                     <input type="hidden" name="id" value="<?php echo $animal_id; ?>">
                     
