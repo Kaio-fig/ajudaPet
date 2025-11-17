@@ -87,7 +87,7 @@ try {
             <a href="relatorio.php" class="tab-link">
                 <i class="fas fa-file-alt"></i> Solicitantes
             </a>
-            <a href="../ver_doacoes.php" class="tab-link">
+            <a href="ver_doacoes.php" class="tab-link">
                 <i class="fas fa-box-open"></i> Doações Físicas
             </a>
         </nav>
