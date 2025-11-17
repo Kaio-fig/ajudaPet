@@ -284,7 +284,8 @@ try {
                         </div>
                         <div class="pix-coluna qr-code-container">
                             <p>Ou aponte sua câmera:</p>
-                            <img src="assets/images/meu-qrcode-pix.png" alt="QR Code PIX para doação">
+                            <img src="assets/images/meu-qrcode-pix.jpeg" alt="QR Code PIX para doação">
+                            <small>Adriana Cristina da Silva</small>
                         </div>
                     </div>
                 </div>
