@@ -123,7 +123,7 @@ try {
                 <?php
                 // VERIFICA SE É UM SOLICITANTE LOGADO
                 elseif (isset($_SESSION['solicitante_id'])):
-                    // Pega o nome do solicitante (o "Marcos Oli" do exemplo)
+                    // Pega o nome do solicitante
                     $nome_solicitante = $_SESSION['solicitante_nome'];
                 ?>
                     <div class="profile-dropdown">
@@ -142,13 +142,20 @@ try {
                             <a href="backend/logout.php">Sair</a>
                         </div>
                     </div>
+                <?php
+
+                // SE NÃO ESTIVER LOGADO (VISITANTE)
+                else:
+                    // Captura a URL atual completa
+                    $currentPage = $_SERVER['REQUEST_URI'];
+                    // Cria o link de login com o parâmetro 'redirect'
+                    $login_url = 'login.php?redirect=' . urlencode($currentPage);
+                ?>
+                    <a href="<?php echo $login_url; ?>" class="btn-login">Login/Cadastro</a>
 
                 <?php
-                else:
+                endif;
                 ?>
-                    <a href="login.php" class="btn-login">Login/Cadastro</a>
-
-                <?php endif; ?>
             </div>
         </div>
     </header>

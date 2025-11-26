@@ -243,11 +243,18 @@ if (isset($_SESSION['solicitante_id'])) {
                     </div>
 
                 <?php
+                 // SE NÃO ESTIVER LOGADO (VISITANTE)
                 else:
+                    // Captura a URL atual completa
+                    $currentPage = $_SERVER['REQUEST_URI'];
+                    // Cria o link de login com o parâmetro 'redirect'
+                    $login_url = 'login.php?redirect=' . urlencode($currentPage);
                 ?>
-                    <a href="login.php" class="btn-login">Login/Cadastro</a>
+                    <a href="<?php echo $login_url; ?>" class="btn-login">Login/Cadastro</a>
 
-                <?php endif; ?>
+                <?php
+                endif;
+                ?>
             </div>
         </div>
     </header>

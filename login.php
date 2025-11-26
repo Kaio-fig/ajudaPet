@@ -3,6 +3,7 @@ session_start();
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,11 @@ session_start();
     <link rel="stylesheet" href="assets/css/global.css">
     <link rel="stylesheet" href="assets/css/login.css">
 </head>
+
 <body>
 
     <div class="login-page-container">
-        
+
         <div class="login-box">
             <h2>Login</h2>
             <p>Acesse sua conta para continuar.</p>
@@ -34,6 +36,14 @@ session_start();
             ?>
 
             <form action="backend/processa_login.php" method="POST">
+                <?php
+                // Se uma URL de redirecionamento foi passada,
+                // insere ela num campo escondido
+                if (isset($_GET['redirect'])):
+                ?>
+                    <input type="hidden" name="redirect_url" value="<?php echo htmlspecialchars($_GET['redirect']); ?>">
+                <?php endif; ?>
+
                 <div class="form-group">
                     <label for="email">E-mail:</label>
                     <input type="email" id="email" name="email" required>
@@ -44,7 +54,7 @@ session_start();
                 </div>
                 <button type="submit" class="btn-submit" style="width:100%;">Entrar</button>
             </form>
-            
+
             <div class="register-link">
                 <p>Não tem conta? <a href="cadastro_solicitante.php">Cadastre-se aqui</a></p>
             </div>
@@ -52,4 +62,5 @@ session_start();
 
     </div>
 </body>
+
 </html>
