@@ -163,7 +163,7 @@ try {
         <section class="hero">
             <div class="hero-content">
                 <h1>Adote um Amigo</h1>
-                <p>Encontre cães e gatos em busca de um lar. A adoção muda uma vida.</p>
+                <p>Encontre cães em busca de um lar. A adoção muda uma vida.</p>
             </div>
         </section>
 
@@ -351,6 +351,23 @@ try {
     <script>
         const listaImagensCarrossel = <?php echo json_encode($imagens_carrossel); ?>;
     </script>
+    <?php
+    // Verifica se algum filtro foi enviado na URL
+    if (!empty($_GET['search']) || !empty($_GET['sexo']) || !empty($_GET['porte'])):
+    ?>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Encontra a seção da galeria
+                const secaoGaleria = document.getElementById('galeria');
+                if (secaoGaleria) {
+                    // Rola suavemente até ela
+                    secaoGaleria.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        </script>
+    <?php endif; ?>
 
 </body>
 
